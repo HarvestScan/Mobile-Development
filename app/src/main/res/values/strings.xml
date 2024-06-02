@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HarvestScan</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_my_plant">My Plant</string>
+    <string name="insert_image">Insert image</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="no_media_selected">No media selected</string>
+    <string name="analyze">Analyze</string>
+    <string name="text_analyze">Click \"Analyze\" to identify diseases.</string>
+</resources>
