@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HarvestScan</string>
+    <string name="app_name">Harvest Scan</string>
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_my_plant">My Plant</string>
@@ -9,4 +9,10 @@
     <string name="no_media_selected">No media selected</string>
     <string name="analyze">Analyze</string>
     <string name="text_analyze">Click \"Analyze\" to identify diseases.</string>
+    <string name="logout">Logout</string>
+    <string name="about_harvest_scan">About Harvest Scan</string>
+    <string name="harvest_scan_logo">harvest scan logo</string>
+    <string name="welcome_message">Welcome, user</string>
+    <string name="add_reminder">+ Add Reminder</string>
+    <string name="history">History</string>
 </resources>
