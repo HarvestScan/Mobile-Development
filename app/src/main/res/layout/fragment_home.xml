@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/history"
+                android:text="@string/title_history"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
                 android:textSize="18sp"

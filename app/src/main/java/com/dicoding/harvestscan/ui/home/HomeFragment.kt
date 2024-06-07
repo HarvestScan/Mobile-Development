@@ -10,15 +10,18 @@ import android.view.ViewGroup
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentHomeBinding
+import com.dicoding.harvestscan.ui.MainViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +40,12 @@ class HomeFragment : Fragment() {
 
         binding.about.setOnClickListener {
             AboutFragment().show(parentFragmentManager, "aboutTag")
+        }
+        binding.cardScan.setOnClickListener {
+            mainViewModel.onScanButtonClicked()
+        }
+        binding.cardMyPlant.setOnClickListener {
+            mainViewModel.onMyPlantButtonClicked()
         }
 
         val menuHost: MenuHost = requireActivity()

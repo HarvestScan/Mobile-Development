@@ -1,18 +1,22 @@
 package com.dicoding.harvestscan
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.harvestscan.databinding.ActivityMainBinding
+import com.dicoding.harvestscan.ui.MainViewModel
+import com.dicoding.harvestscan.ui.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private val mainViewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,5 +33,19 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        mainViewModel.navigateToScan.observe(this) { navigate ->
+            if (navigate) {
+                navView.selectedItemId = R.id.navigation_scan
+                mainViewModel.onNavigatedToScan()
+            }
+        }
+
+        mainViewModel.navigateToMyPlant.observe(this) { navigate ->
+            if (navigate) {
+                navView.selectedItemId = R.id.navigation_my_plant
+                mainViewModel.onNavigatedToScan()
+            }
+        }
     }
 }
