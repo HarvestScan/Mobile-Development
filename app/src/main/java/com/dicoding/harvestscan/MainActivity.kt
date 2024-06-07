@@ -2,16 +2,14 @@ package com.dicoding.harvestscan
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.harvestscan.databinding.ActivityMainBinding
 import com.dicoding.harvestscan.ui.MainViewModel
-import com.dicoding.harvestscan.ui.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,11 +39,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        mainViewModel.navigateToHistory.observe(this) { navigate ->
+            if (navigate) {
+                navView.selectedItemId = R.id.navigation_scan
+                navController.navigate(R.id.action_navigation_scan_to_navigation_history)
+                mainViewModel.onNavigatedToHistory()
+            }
+        }
+
         mainViewModel.navigateToMyPlant.observe(this) { navigate ->
             if (navigate) {
                 navView.selectedItemId = R.id.navigation_my_plant
-                mainViewModel.onNavigatedToScan()
+                mainViewModel.onNavigatedToMyPlant()
             }
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

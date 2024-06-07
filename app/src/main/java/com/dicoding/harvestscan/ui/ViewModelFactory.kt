@@ -1,6 +1,5 @@
 package com.dicoding.harvestscan.ui
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.harvestscan.ui.home.HomeViewModel

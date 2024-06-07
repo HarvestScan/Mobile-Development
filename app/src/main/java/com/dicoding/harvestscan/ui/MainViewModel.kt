@@ -11,6 +11,9 @@ class MainViewModel: ViewModel() {
     private val _navigateToMyPlant = MutableLiveData<Boolean>()
     val navigateToMyPlant: LiveData<Boolean> get() = _navigateToMyPlant
 
+    private val _navigateToHistory = MutableLiveData<Boolean>()
+    val navigateToHistory: LiveData<Boolean> get() = _navigateToHistory
+
     fun onScanButtonClicked() {
         _navigateToScan.value = true
     }
@@ -24,5 +27,12 @@ class MainViewModel: ViewModel() {
 
     fun onNavigatedToMyPlant() {
         _navigateToMyPlant.value = false
+    }
+    fun onHistoryButtonClicked() {
+        _navigateToHistory.value = true
+    }
+
+    fun onNavigatedToHistory() {
+        _navigateToHistory.value = false
     }
 }

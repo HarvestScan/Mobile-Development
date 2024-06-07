@@ -44,6 +44,9 @@ class HomeFragment : Fragment() {
         binding.cardScan.setOnClickListener {
             mainViewModel.onScanButtonClicked()
         }
+        binding.cardHistoryScan.setOnClickListener {
+            mainViewModel.onHistoryButtonClicked()
+        }
         binding.cardMyPlant.setOnClickListener {
             mainViewModel.onMyPlantButtonClicked()
         }
