@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/about_harvest_scan"
+                    android:text="@string/about_card"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:layout_gravity="center"
