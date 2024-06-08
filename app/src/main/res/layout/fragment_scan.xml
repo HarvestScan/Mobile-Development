@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.scan.ScanFragment">
 
+    <!-- Setengah Lingkaran di bagian atas -->
+    <View
+        android:id="@+id/half_circle_background"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/half_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -22,19 +33,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/insert_image"
+        android:textColor="@color/black"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressIndicator" />
 
+    <!-- Gambar tanaman -->
     <ImageView
         android:id="@+id/iv_scan_image"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="341dp"
+        android:layout_height="275dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/image_border"
         android:padding="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,9 +59,10 @@
 
     <Button
         android:id="@+id/btn_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="112dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="184dp"
+        android:backgroundTint="@color/teal_500"
         android:text="@string/camera"
         app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +70,10 @@
 
     <Button
         android:id="@+id/btn_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="115dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="184dp"
+        android:backgroundTint="@color/teal_500"
         android:text="@string/gallery"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_camera"
@@ -66,9 +84,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text="@string/analyze"
+        android:backgroundTint="@color/teal_500"
         android:visibility="gone"
+        android:text="@string/analyze"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_gallery" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
