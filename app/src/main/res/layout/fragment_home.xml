@@ -12,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="textStart"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+
+        android:textSize="23sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,29 +42,32 @@
             android:layout_columnWeight="1"
             android:layout_columnSpan="2"
             android:layout_margin="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
-                android:orientation="horizontal">
+                android:background="@drawable/half_gradient_background"
+                android:orientation="horizontal"
+                android:padding="20dp">
 
                 <ImageView
                     android:id="@+id/iv_harvest_scan"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/harvest_scan_logo"
                     android:layout_weight="1"
-                    android:contentDescription="@string/harvest_scan_logo" />
+                    android:contentDescription="@string/harvest_scan_logo"
+                    android:src="@drawable/harvest_scan_logo" />
 
                 <TextView
                     android:id="@+id/tv_harvest_scan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
                     android:text="@string/about_card"
                     android:textAlignment="center"
                     android:textSize="18sp"
-                    android:layout_gravity="center"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -72,13 +78,16 @@
             app:cardCornerRadius="15dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            app:cardBackgroundColor="@color/grey_soft"
             android:layout_margin="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_scan"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
@@ -92,13 +101,16 @@
             app:cardCornerRadius="15dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            app:cardBackgroundColor="@color/grey_soft"
             android:layout_margin="10dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_history"
+                android:text="@string/history"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
@@ -112,6 +124,7 @@
             app:cardCornerRadius="15dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            app:cardBackgroundColor="@color/grey_soft"
             android:layout_margin="10dp">
             <TextView
                 android:layout_width="match_parent"
@@ -119,6 +132,7 @@
                 android:text="@string/title_my_plant"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
@@ -132,6 +146,7 @@
             app:cardCornerRadius="15dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            app:cardBackgroundColor="@color/grey_soft"
             android:layout_margin="10dp">
             <TextView
                 android:layout_width="match_parent"
@@ -139,6 +154,7 @@
                 android:text="@string/add_reminder"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
