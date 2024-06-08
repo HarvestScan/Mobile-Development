@@ -1,0 +1,15 @@
+<!-- res/drawable/half_gradient_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lapisan bawah: Warna latar belakang keseluruhan -->
+    <item android:drawable="@android:color/transparent" />
+
+    <!-- Lapisan atas: Gradasi -->
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@android:color/transparent"
+                android:endColor="#3E3CA35E"
+                android:angle="0" />
+        </shape>
+    </item>
+</layer-list>
