@@ -14,10 +14,20 @@
     <string name="harvest_scan_logo">harvest scan logo</string>
     <string name="welcome_message">Welcome, user</string>
     <string name="add_reminder">+ Add Reminder</string>
+    <string name="add_plant">+ Add Plant</string>
+    <string name="title_page_myplants">My Plants</string>
+    <string name="photo_plants">plants</string>
     <string name="history">History</string>
-    <string name="about_harvest_scan">Harvest Scan is a mobile application with the main feature of scanning plant leaves to identify diseases and provide treatment options. \n\nSimply click the scan menu, capture an image directly through the camera app, or choose an existing photo from your gallery. Once you've selected your image, hit the "analyze" button to have Harvest Scan identify the plant disease and provide recommendations for treatment. \n\nHarvest Scan also allows you to create a personalized plant list and set reminders to ensure your precious greenery thrives.</string>
+    <string name="about_harvest_scan">Harvest Scan is a mobile application with the main feature of scanning plant leaves to identify diseases and provide treatment options. \n\nSimply click the scan menu, capture an image directly through the camera app, or choose an existing photo from your gallery. Once you\'ve selected your image, hit the "analyze" button to have Harvest Scan identify the plant disease and provide recommendations for treatment. \n\nHarvest Scan also allows you to create a personalized plant list and set reminders to ensure your precious greenery thrives.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_add_plant">Add Plant</string>
     <string name="desk_add_plant">Add Plant Photo (optional):</string>
+
+    <string name="desc_name_plant">Description of the plant name</string>
+    <string name="hint_name_plant">Enter plant name</string>
+    <string name="desc_type_plant">Description of the plant type</string>
+    <string name="hint_type_plant">Enter plant type</string>
+    <string name="desc_botanical_plant">Description of the botanical plant</string>
+    <string name="hint_botanical_plant">Enter botanical name</string>
 </resources>
