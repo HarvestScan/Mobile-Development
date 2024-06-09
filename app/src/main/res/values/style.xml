@@ -2,7 +2,7 @@
 <resources>
     <style name="BottomNavItemShape">
         <item name="cornerFamily">cut</item>
-        <item name="cornerSize">24dp</item>
+        <item name="cornerSize">28dp</item>
     </style>
     Widget.Material3.Button.ElevatedButton
     Widget.Material3.Button.UnelevatedButton.Icon
