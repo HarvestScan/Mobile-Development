@@ -12,7 +12,7 @@
         android:id="@+id/image_add_plant"
         android:layout_width="176dp"
         android:layout_height="166dp"
-        android:contentDescription="image_plant"
+        android:contentDescription="@string/desc_image_plant"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="117dp"
         tools:layout_editor_absoluteY="116dp"
@@ -25,6 +25,8 @@
         android:layout_marginTop="28dp"
         android:backgroundTint="@color/teal_500"
         android:text="@string/gallery"
+        android:textSize="18sp"
+        style="@style/Widget.Material3.Button.Icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_camera"
         app:layout_constraintTop_toBottomOf="@+id/image_add_plant"
@@ -37,6 +39,8 @@
         android:layout_marginTop="28dp"
         android:backgroundTint="@color/teal_500"
         android:text="@string/camera"
+        android:textSize="18sp"
+        style="@style/Widget.Material3.Button.Icon"
         app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_add_plant"
@@ -56,6 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -66,52 +71,49 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/image_add_plant"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_add_plant"
-        app:layout_constraintVertical_bias="0.333" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/title_name_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Input your name plant"
+        android:text="@string/text_input_name"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_input_name_plant"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="396dp" />
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_input_name_plant"
-        android:layout_width="314dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="420dp"
-        android:background="@drawable/rounded_corner_bg"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/layout_input_name"
+        android:layout_width="341dp"
+        android:layout_height="46dp"
+        android:layout_margin="16dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="#6200EE"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="clear_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="416dp">
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_name_plant"
-            android:layout_width="314dp"
-            android:layout_height="50dp"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:contentDescription="@string/desc_name_plant"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
             android:hint="@string/hint_name_plant"
-            android:scrollHorizontally="false"
-            tools:ignore="ContentDescription" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -119,91 +121,93 @@
         android:id="@+id/title_type_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Input your type plant"
+        android:text="@string/text_input_type"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_input_type_plant"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_input_name_plant"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="480dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_input_type_plant"
-        android:layout_width="314dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="496dp"
-        android:background="@drawable/rounded_corner_bg"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <!--        android:hint="Your type plant"-->
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/desc_type_plant"
-            android:layout_width="314dp"
-            android:layout_height="50dp"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:contentDescription="@string/desc_type_plant"
-            android:hint="@string/hint_type_plant"
-            android:scrollHorizontally="false" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_input_botanical_plant"
-        android:layout_width="314dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="572dp"
-        android:background="@drawable/rounded_corner_bg"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <!--        android:hint="Your type plant"-->
-
+        android:id="@+id/layout_input_message"
+        android:layout_width="341dp"
+        android:layout_height="46dp"
+        android:layout_margin="16dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="#6200EE"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="clear_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="500dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/desc_botanical_plant"
-            android:layout_width="314dp"
-            android:layout_height="50dp"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:contentDescription="@string/desc_botanical_plant"
-            android:hint="@string/hint_botanical_plant"
-            android:scrollHorizontally="false" />
+            android:id="@+id/ed_add_description"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:hint="@string/hint_type_plant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/title_botanical_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Input your botanical plant"
+        android:text="@string/text_input_botanical"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_input_botanical_plant"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_input_type_plant"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="562dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_input_botanical_plant"
+        android:layout_width="341dp"
+        android:layout_height="46dp"
+        android:layout_margin="16dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="#6200EE"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="clear_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="582dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/desc_botanical_plant"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:hint="@string/hint_botanical_plant"
+            android:inputType="text"
+            tools:ignore="MissingConstraints" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/save_add_plant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:backgroundTint="@color/teal_500"
+        style="@style/Widget.Material3.Button.Icon"
+        app:icon="@drawable/baseline_save_24"
+        android:text="@string/save_add_plant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_input_botanical_plant"
+        app:layout_constraintVertical_bias="0.381" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
