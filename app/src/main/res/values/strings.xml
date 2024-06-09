@@ -4,6 +4,7 @@
     <string name="title_scan">Scan</string>
     <string name="title_my_plant">My Plant</string>
     <string name="title_history">My History</string>
+    <string name="title_result">Result</string>
     <string name="insert_image">Please Insert Image Plant</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -20,11 +21,9 @@
     <string name="photo_plants">plants</string>
     <string name="history">History</string>
     <string name="about_harvest_scan">Harvest Scan is a mobile application with the main feature of scanning plant leaves to identify diseases and provide treatment options. \n\nSimply click the scan menu, capture an image directly through the camera app, or choose an existing photo from your gallery. Once you\'ve selected your image, hit the "analyze" button to have Harvest Scan identify the plant disease and provide recommendations for treatment. \n\nHarvest Scan also allows you to create a personalized plant list and set reminders to ensure your precious greenery thrives.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_add_plant">Add Plant</string>
     <string name="desk_add_plant">Add Plant Photo (optional):</string>
-
     <string name="desc_name_plant">Description of the plant name</string>
     <string name="hint_name_plant">Enter plant name</string>
     <string name="desc_type_plant">Description of the plant type</string>
@@ -38,4 +37,13 @@
     <string name="save_add_plant">SAVE</string>
     <string name="green_logo">Green Logo</string>
     <string name="white_logo">white_logo</string>
+    <string name="title_login_page">Login</string>
+    <string name="message_login_page">Login first</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="title_signup_page">"Register "</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="dont_have_an_account">don\'t have an account?</string>
 </resources>

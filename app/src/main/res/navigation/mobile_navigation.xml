@@ -6,10 +6,42 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.dicoding.harvestscan.ui.auth.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_register"
+            app:destination="@id/navigation_register" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="com.dicoding.harvestscan.ui.auth.register.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.dicoding.harvestscan.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_my_plant"
+            app:destination="@id/navigation_my_plant" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_scan"
+            app:destination="@id/navigation_scan" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_scan"
@@ -19,12 +51,22 @@
         <action
             android:id="@+id/action_navigation_scan_to_navigation_history"
             app:destination="@id/navigation_history" />
+        <action
+            android:id="@+id/action_navigation_scan_to_navigation_result"
+            app:destination="@id/navigation_result" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_result"
+        android:name="com.dicoding.harvestscan.ui.scan.ResultFragment"
+        android:label="@string/title_result"
+        tools:layout="@layout/fragment_result">
     </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.dicoding.harvestscan.ui.scan.HistoryFragment"
-        android:label="@string/title_history"
+        android:label="@string/history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
@@ -32,4 +74,5 @@
         android:name="com.dicoding.harvestscan.ui.myplant.MyPlantFragment"
         android:label="@string/title_my_plant"
         tools:layout="@layout/fragment_myplant" />
+
 </navigation>

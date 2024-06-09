@@ -17,16 +17,18 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentScanBinding
 import com.dicoding.harvestscan.getImageUri
+import com.dicoding.harvestscan.helper.ImageClassifierHelper
+import org.tensorflow.lite.task.vision.classifier.Classifications
 
 class ScanFragment : Fragment() {
 
     private var _binding: FragmentScanBinding? = null
     private var currentImageUri: Uri? = null
+    private lateinit var imageClassifierHelper: ImageClassifierHelper
 
     private val binding get() = _binding!!
 
@@ -35,13 +37,9 @@ class ScanFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this)[ScanViewModel::class.java]
-
         _binding = FragmentScanBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +62,13 @@ class ScanFragment : Fragment() {
 
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCamera() }
+        binding.btnAnalyze.setOnClickListener {
+            currentImageUri?.let {
+                analyzeImage(it)
+            } ?: run {
+                showToast("Masukkan gambar terlebih dahulu")
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -106,6 +111,37 @@ class ScanFragment : Fragment() {
             binding.tvInsertImage.text = getString(R.string.text_analyze)
         }
     }
+    private fun analyzeImage(uri: Uri) {
+        imageClassifierHelper = ImageClassifierHelper(
+            context = requireActivity(),
+            classifierListener = object : ImageClassifierHelper.ClassifierListener {
+                override fun onError(error: String) {
+                    showToast(error)
+                }
+
+                override fun onResults(results: List<Classifications>?) {
+                    results?.map { classifications ->
+                        val label = classifications.categories[0].label
+                        val confidenceScore = (classifications.categories[0].score * 100).toInt().toString()
+                        if (label != null){
+//                            binding.tvLabel.text = label
+//                            binding.tvScore.text = confidenceScore
+                        }
+                    }
+                }
+            }
+        )
+
+        imageClassifierHelper.classifyStaticImage(uri)
+    }
+
+//    private fun moveToResult(uri:Uri, label: String, score: String) {
+//        val intent = Intent(requireActivity(), ResultFragment::class.java)
+//        intent.putExtra(ResultFragment.EXTRA_IMAGE_URI, uri.toString())
+//        intent.putExtra(ResultFragment.EXTRA_RESULT_LABEL, label)
+//        intent.putExtra(ResultFragment.EXTRA_RESULT_SCORE, score)
+//        startActivity(intent)
+//    }
 
     private fun showToast(message: String) {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
