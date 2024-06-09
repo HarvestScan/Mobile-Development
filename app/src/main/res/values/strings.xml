@@ -36,4 +36,6 @@
     <string name="text_input_type">Input your type plant</string>
     <string name="desc_image_plant">image_plant</string>
     <string name="save_add_plant">SAVE</string>
+    <string name="green_logo">Green Logo</string>
+    <string name="white_logo">white_logo</string>
 </resources>
