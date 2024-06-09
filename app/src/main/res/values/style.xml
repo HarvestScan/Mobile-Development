@@ -4,4 +4,7 @@
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">24dp</item>
     </style>
+    Widget.Material3.Button.ElevatedButton
+    Widget.Material3.Button.UnelevatedButton.Icon
+    Widget.Material3.Button.Icon
 </resources>

@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_my_plant">My Plant</string>
+    <string name="title_history">My History</string>
     <string name="insert_image">Please Insert Image Plant</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -30,4 +31,9 @@
     <string name="hint_type_plant">Enter plant type</string>
     <string name="desc_botanical_plant">Description of the botanical plant</string>
     <string name="hint_botanical_plant">Enter botanical name</string>
+    <string name="text_input_name">Input your name plant</string>
+    <string name="text_input_botanical">Input your botanical plant</string>
+    <string name="text_input_type">Input your type plant</string>
+    <string name="desc_image_plant">image_plant</string>
+    <string name="save_add_plant">SAVE</string>
 </resources>
