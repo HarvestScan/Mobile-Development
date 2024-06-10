@@ -4,20 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="462dp"
+        android:background="@drawable/bg_bottom_sheet"
         android:orientation="vertical"
         android:padding="30dp"
-        android:background="@drawable/bg_bottom_sheet"
+        android:backgroundTint="@color/gray_soft"
         tools:context=".ui.home.AboutFragment">
+
 
         <TextView
             android:id="@+id/tv_about"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="365dp"
+            android:layout_height="395dp"
+            android:fontFamily="@font/poppins_extra_light"
             android:text="@string/about_harvest_scan"
-            style="@style/TextAppearance.AppCompat.Medium"/>
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </FrameLayout>

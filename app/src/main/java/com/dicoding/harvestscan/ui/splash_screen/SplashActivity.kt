@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.harvestscan.MainActivity
 import com.dicoding.harvestscan.R
@@ -14,6 +15,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Log.d("SplashActivity", "Splash screen is displayed")
 
         Handler(Looper.getMainLooper()).postDelayed({
             goToMainActivity()
