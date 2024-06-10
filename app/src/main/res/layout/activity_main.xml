@@ -41,7 +41,7 @@
 
     <View
         android:id="@+id/nav_host_fragment_main"
-        android:layout_width="62dp"
+        android:layout_width="65dp"
         android:layout_height="5dp"
         android:layout_marginStart="60dp"
         android:background="@color/teal_500"
