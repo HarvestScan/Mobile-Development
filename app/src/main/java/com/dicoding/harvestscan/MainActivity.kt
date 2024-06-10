@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
+import androidx.core.view.marginStart
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,6 +18,7 @@ import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 import com.dicoding.harvestscan.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okio.blackholeSink
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,53 +30,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
-        val indicator: View = findViewById(R.id.nav_host_fragment_main)
-
-//        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-//        bottomNavigationView.setupWithNavController(navController)
-
-        // Set initial position of the indicator
-        bottomNavigationView.post {
-            moveIndicator(indicator, bottomNavigationView, bottomNavigationView.selectedItemId)
-        }
-
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            moveIndicator(indicator, bottomNavigationView, item.itemId)
-            navController.navigate(item.itemId)
-            true
-        }
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         homeViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
-                // Navigasi ke LoginFragment jika belum login
+                // Navigate to LoginFragment if not logged in
                 if (navController.currentDestination?.id != R.id.navigation_login) {
                     navController.navigate(R.id.navigation_login)
                 }
-                // Sembunyikan BottomNavigationView
-                bottomNavigationView.visibility = View.GONE
+                // Hide BottomNavigationView
+                binding.navView.visibility = View.GONE
                 return@observe
             }
 
-            // Hanya setup navigation jika user sudah login
+            // Setup navigation only if user is logged in
             setupNavigation(navController)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_login, R.id.navigation_register -> {
-                    bottomNavigationView.visibility = View.GONE
+                    binding.navView.visibility = View.GONE
                 }
                 else -> {
-                    bottomNavigationView.visibility = View.VISIBLE
+                    binding.navView.visibility = View.VISIBLE
                 }
             }
         }
@@ -82,8 +65,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigation(navController: NavController) {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val indicator: View = findViewById(R.id.nav_host_fragment_main)
 
         navView.setupWithNavController(navController)
+
+        // Set initial position of the indicator
+        navView.post {
+            moveIndicator(indicator, navView, navView.selectedItemId)
+        }
+
+        navView.setOnItemSelectedListener { item ->
+            moveIndicator(indicator, navView, item.itemId)
+            navController.navigate(item.itemId)
+            true
+        }
 
         mainViewModel.navigateToScan.observe(this) { navigate ->
             if (navigate) {
@@ -110,16 +105,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun moveIndicator(indicator: View, bottomNavigationView: BottomNavigationView, itemId: Int) {
         val menuView = bottomNavigationView.getChildAt(0) as ViewGroup
-        var targetView: View? = null
-
-        menuView.forEach { view ->
-            if (view.id == itemId) {
-                targetView = view
-            }
-        }
+        val targetView = menuView.findViewById<View>(itemId)
 
         targetView?.let {
-            val targetX = it.x + it.width / 2 - indicator.width / 2
+            val targetX = it.x + (it.width / 2) - (indicator.width / 2)
+            // val selectedColor: Int = resources.getColor(R.color.teal_500)
+            // it.setBackgroundColor(selectedColor)
             ObjectAnimator.ofFloat(indicator, "x", targetX).apply {
                 duration = 300
                 start()
@@ -127,12 +118,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 }
