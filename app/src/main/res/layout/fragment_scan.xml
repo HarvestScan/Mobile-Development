@@ -7,6 +7,7 @@
     tools:context=".ui.scan.ScanFragment">
 
     <!-- Setengah Lingkaran di bagian atas -->
+
     <View
         android:id="@+id/half_circle_background"
         android:layout_width="match_parent"
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/insert_image"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="23sp"
         android:textStyle="bold"
@@ -62,10 +63,11 @@
         style="@style/Widget.Material3.Button.Icon"
         android:layout_width="112dp"
         android:layout_height="55dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="140dp"
         android:backgroundTint="@color/teal_500"
+        android:gravity="center"
         android:text="@string/camera"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
@@ -73,24 +75,26 @@
     <Button
         android:id="@+id/btn_gallery"
         style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="115dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="112dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="140dp"
         android:backgroundTint="@color/teal_500"
+        android:gravity="center"
         android:text="@string/gallery"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_camera"
         app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
 
     <Button
         android:id="@+id/btn_analyze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_width="112dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/teal_500"
         android:visibility="gone"
         android:text="@string/analyze"
+        android:gravity="center"
         android:textSize="18sp"
         style="@style/Widget.Material3.Button.Icon"
         app:layout_constraintEnd_toEndOf="parent"

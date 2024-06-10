@@ -20,7 +20,6 @@
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="365dp"
             android:layout_height="395dp"
-            android:fontFamily="@font/poppins_extra_light"
             android:text="@string/about_harvest_scan"
             android:textSize="15sp"
             android:textStyle="bold" />

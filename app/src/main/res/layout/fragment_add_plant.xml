@@ -24,6 +24,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="28dp"
         android:backgroundTint="@color/teal_500"
+        android:gravity="center"
         android:text="@string/gallery"
         android:textSize="18sp"
         style="@style/Widget.Material3.Button.Icon"
@@ -40,27 +41,28 @@
         android:backgroundTint="@color/teal_500"
         android:text="@string/camera"
         android:textSize="18sp"
+        android:gravity="center"
         style="@style/Widget.Material3.Button.Icon"
         app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_add_plant"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
         android:id="@+id/title_add_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins_bold_italic"
         android:text="@string/text_add_plant"
-        android:fontFamily="@font/poppins_light_italic"
+        android:textColor="@color/teal_500"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/teal_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/textView"
@@ -68,14 +70,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/desk_add_plant"
-        android:fontFamily="@font/poppins_extra_light"
+        android:fontFamily="@font/poppins_regular"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/image_add_plant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_add_plant"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -203,6 +204,7 @@
         android:backgroundTint="@color/teal_500"
         android:text="@string/save_add_plant"
         android:textSize="15sp"
+        android:gravity="center"
         app:icon="@drawable/baseline_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
