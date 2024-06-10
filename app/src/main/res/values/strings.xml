@@ -37,12 +37,12 @@
     <string name="save_add_plant">SAVE</string>
     <string name="green_logo">Green Logo</string>
     <string name="white_logo">white_logo</string>
-    <string name="title_login_page">Login</string>
+    <string name="title_login_page">LOGIN</string>
     <string name="message_login_page">Login first</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="title_signup_page">"Register "</string>
+    <string name="title_signup_page">"SIGN UP HERE "</string>
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="dont_have_an_account">don\'t have an account?</string>

@@ -14,9 +14,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:alpha="0"
+        android:fontFamily="@font/poppins_semi_bold"
+
         android:text="@string/title_signup_page"
         android:textColor="@color/teal_500"
-        android:textSize="24sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -91,7 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -127,25 +131,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signupButton"
+        style="@style/Widget.Material3.Button.Icon"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:alpha="0"
-        android:textSize="24sp"
         android:backgroundTint="@color/teal_500"
-        style="@style/Widget.Material3.Button.Icon"
         android:text="@string/register"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-        tools:alpha="100" />
+        tools:alpha="100"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
@@ -153,7 +159,7 @@
         android:layout_height="64dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.22"
+        app:layout_constraintGuide_percent="0.02"
         app:layout_constraintStart_toStartOf="parent" />
 
 

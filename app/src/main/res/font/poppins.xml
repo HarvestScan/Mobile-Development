@@ -2,7 +2,7 @@
 <font-family xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
         app:font="@font/poppins_bold_italic"
-        app:fontStyle="italic"
+        app:fontStyle="normal"
         app:fontWeight="800"/>
 
     <font

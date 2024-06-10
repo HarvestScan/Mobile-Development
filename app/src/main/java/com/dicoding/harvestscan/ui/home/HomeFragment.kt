@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentHomeBinding
 import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -32,16 +34,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            if (!user.isLogin) {
-                val navController = findNavController()
-                // Periksa apakah destinasi saat ini bukan LoginFragment
-                if (navController.currentDestination?.id != R.id.navigation_login) {
-                    navController.navigate(R.id.action_navigation_home_to_navigation_login)
-                }
-            }
-        }
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -78,8 +70,19 @@ class HomeFragment : Fragment() {
         binding.cardMyPlant.setOnClickListener {
             mainViewModel.onMyPlantButtonClicked()
         }
+        binding.cardAddReminder.setOnClickListener {
+            Toast.makeText(requireContext(), "Add Reminder Clicked!", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_navigation_home_to_reminderFragment)
+        }
 
-
+        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (!user.isLogin) {
+                val navController = findNavController()
+                if (navController.currentDestination?.id != R.id.navigation_login) {
+                    navController.navigate(R.id.action_navigation_home_to_navigation_login)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

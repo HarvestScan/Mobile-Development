@@ -17,6 +17,7 @@
             android:id="@+id/action_navigation_login_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_register"
         android:name="com.dicoding.harvestscan.ui.auth.register.RegisterFragment"
@@ -41,7 +42,16 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_login"
             app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_home_to_reminderFragment"
+            app:destination="@id/navigation_reminder"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reminder"
+        android:name="com.dicoding.harvestscan.ui.reminder.ReminderFragment"
+        android:label="Reminder Fragment"
+        tools:layout="@layout/fragment_reminder" />
 
     <fragment
         android:id="@+id/navigation_scan"
