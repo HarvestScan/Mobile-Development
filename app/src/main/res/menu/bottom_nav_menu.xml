@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        android:fontFamily="@font/poppins_light_italic"/>
+
 
     <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_scan"
-        android:title="@string/title_scan" />
+        android:title="@string/title_scan"
+        android:fontFamily="@font/poppins_light_italic"/>
 
     <item
         android:id="@+id/navigation_my_plant"
         android:icon="@drawable/ic_my_plant"
-        android:title="@string/title_my_plant" />
+        android:title="@string/title_my_plant"
+        android:fontFamily="@font/poppins_light_italic"/>
 
 </menu>

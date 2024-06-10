@@ -4,21 +4,16 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.forEach
-import androidx.core.view.marginStart
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.harvestscan.databinding.ActivityMainBinding
 import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 import com.dicoding.harvestscan.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okio.blackholeSink
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set initial position of the indicator
         navView.post {
-            moveIndicator(indicator, navView, navView.selectedItemId)
+            moveIndicator(indicator, navView, R.id.navigation_home)
         }
 
         navView.setOnItemSelectedListener { item ->
@@ -108,9 +103,11 @@ class MainActivity : AppCompatActivity() {
         val targetView = menuView.findViewById<View>(itemId)
 
         targetView?.let {
-            val targetX = it.x + (it.width / 2) - (indicator.width / 2)
-            // val selectedColor: Int = resources.getColor(R.color.teal_500)
-            // it.setBackgroundColor(selectedColor)
+            // Convert 5dp to pixels
+            val extraMargin = resources.getDimensionPixelSize(R.dimen.extra_margin)
+
+            // Calculate the target X position with additional margin
+            val targetX = it.x + it.width / 2 - indicator.width / 2 + extraMargin
             ObjectAnimator.ofFloat(indicator, "x", targetX).apply {
                 duration = 300
                 start()
@@ -118,10 +115,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }
