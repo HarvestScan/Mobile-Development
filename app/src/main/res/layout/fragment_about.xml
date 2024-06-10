@@ -14,10 +14,17 @@
         android:backgroundTint="@color/gray_soft"
         tools:context=".ui.home.AboutFragment">
 
-
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:id="@+id/drag_handle"
+            android:layout_width="115dp"
+            android:layout_height="11dp"
+            android:layout_gravity="center"
+            android:background="@drawable/drag_handle"
+            android:padding="16dp" />
         <TextView
             android:id="@+id/tv_about"
             style="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
             android:layout_width="365dp"
             android:layout_height="395dp"
             android:text="@string/about_harvest_scan"

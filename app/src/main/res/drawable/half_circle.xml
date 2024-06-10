@@ -3,5 +3,6 @@
     <solid android:color="@color/teal_500" />
     <size android:height="300dp"/>
     <corners android:bottomLeftRadius="150dp" android:bottomRightRadius="150dp" />
-    <stroke android:width="2dp" android:color="@android:color/black" />
+    <!-- Hapus stroke untuk bagian atas -->
+    <stroke android:width="0dp" android:color="@android:color/black" />
 </shape>

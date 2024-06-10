@@ -20,7 +20,7 @@
     <string name="title_page_myplants">My Plants</string>
     <string name="photo_plants">plants</string>
     <string name="history">History</string>
-    <string name="about_harvest_scan">Harvest Scan is a mobile application with the main feature of scanning plant leaves to identify diseases and provide treatment options. \n\nSimply click the scan menu, capture an image directly through the camera app, or choose an existing photo from your gallery. Once you\'ve selected your image, hit the "analyze" button to have Harvest Scan identify the plant disease and provide recommendations for treatment. \n\nHarvest Scan also allows you to create a personalized plant list and set reminders to ensure your precious greenery thrives. \n\nScan Your Plants To Save Your Plants!</string>
+    <string name="about_harvest_scan">\n\nHarvest Scan is a mobile application with the main feature of scanning plant leaves to identify diseases and provide treatment options. \n\nSimply click the scan menu, capture an image directly through the camera app, or choose an existing photo from your gallery. Once you\'ve selected your image, hit the "analyze" button to have Harvest Scan identify the plant disease and provide recommendations for treatment. \n\nHarvest Scan also allows you to create a personalized plant list and set reminders to ensure your precious greenery thrives. \n\nScan Your Plants To Save Your Plants!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_add_plant">Add Plant</string>
     <string name="desk_add_plant">Add Plant Photo (optional):</string>
