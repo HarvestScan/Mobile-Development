@@ -83,6 +83,18 @@
         android:id="@+id/navigation_my_plant"
         android:name="com.dicoding.harvestscan.ui.myplant.MyPlantFragment"
         android:label="@string/title_my_plant"
-        tools:layout="@layout/fragment_myplant" />
+        tools:layout="@layout/fragment_myplant" >
+        <action
+            android:id="@+id/action_navigation_my_plant_to_navigation_reminder"
+            app:destination="@id/navigation_reminder" />
+        <action
+            android:id="@+id/action_navigation_my_plant_to_navigation_add_plant"
+            app:destination="@id/navigation_add_plant" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_plant"
+        android:name="com.dicoding.harvestscan.ui.myplant.AddPlantFragment"
+        android:label="@string/add_plant"
+        tools:layout="@layout/fragment_add_plant" />
 
 </navigation>

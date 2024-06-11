@@ -1,9 +1,11 @@
 package com.dicoding.harvestscan
 
 import android.animation.ObjectAnimator
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        setupView()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
@@ -114,6 +116,12 @@ class MainActivity : AppCompatActivity() {
                 duration = 300
                 start()
             }
+        }
+    }
+
+    private fun setupView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
         }
     }
 
