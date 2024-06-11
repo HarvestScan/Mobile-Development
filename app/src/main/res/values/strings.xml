@@ -14,7 +14,7 @@
     <string name="logout">Logout</string>
     <string name="about_card">About Harvest Scan</string>
     <string name="harvest_scan_logo">harvest scan logo</string>
-    <string name="welcome_message">Welcome, user</string>
+    <string name="welcome_message">Welcome user</string>
     <string name="add_reminder">+ Add Reminder</string>
     <string name="add_plant">+ Add Plant</string>
     <string name="title_page_myplants">My Plants</string>
