@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 // Hide BottomNavigationView
                 binding.navView.visibility = View.GONE
+                binding.navHostFragmentMain.visibility = View.GONE
                 return@observe
             }
 
@@ -113,6 +114,14 @@ class MainActivity : AppCompatActivity() {
             if (navigate) {
                 navView.selectedItemId = R.id.navigation_my_plant
                 mainViewModel.onNavigatedToMyPlant()
+            }
+        }
+
+        mainViewModel.navigateToAddReminder.observe(this) { navigate ->
+            if (navigate) {
+                navView.selectedItemId = R.id.navigation_my_plant
+                navController.navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
+                mainViewModel.onNavigatedToAddReminder()
             }
         }
     }

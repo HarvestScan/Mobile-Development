@@ -46,4 +46,11 @@
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="dont_have_an_account">don\'t have an account?</string>
+    <string name="signup_failed_email_in_use">Email is already in use. Please use a different email address.</string>
+    <string name="signup_success_message">User created successfully!</string>
+    <string name="login_success_message">Login Successful</string>
+    <string name="error_user_null">User Response Data is null</string>
+    <string name="logout_alert_message">Are you sure you want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

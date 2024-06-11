@@ -3,17 +3,20 @@ package com.dicoding.harvestscan.ui.auth.login
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.dicoding.harvestscan.R
-import com.dicoding.harvestscan.data.pref.UserModel
+import com.dicoding.harvestscan.data.remote.Result
+import com.dicoding.harvestscan.data.remote.response.User
 import com.dicoding.harvestscan.databinding.FragmentLoginBinding
 import com.dicoding.harvestscan.ui.ViewModelFactory
 
@@ -40,29 +43,70 @@ class LoginFragment : Fragment() {
             view.findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
         }
         setupAction()
+        observeViewModel()
         playAnimation()
+    }
+
+    private fun observeViewModel() {
+        viewModel.loginResult.observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                when(result) {
+                    is Result.Loading -> {
+                        showLoading(true)
+                    }
+                    is Result.Success -> {
+                        showLoading(false)
+                        loginProcess(result.data.userCredential.user)
+                        showSuccessDialog(result.data.message)
+                    }
+                    is Result.Error -> {
+                        showLoading(false)
+                        handleError(result.error)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loginProcess(data: User) {
+        viewModel.saveSession(data)
+        showToast(getString(R.string.login_success_message))
+    }
+    private fun handleError(error: String) {
+        if (error.contains("Firebase: Error (auth/email-already-in-use).")) {
+            showToast(getString(R.string.signup_failed_email_in_use))
+        } else {
+            showToast(error)
+            Log.d("RegisterUser", error)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
-            viewModel.saveSession(UserModel(email, "sample_token"))
-            val dialog = AlertDialog.Builder(requireActivity()).apply {
-                setTitle("Yeay!")
-                setMessage("You have successfully logged in.")
-                setPositiveButton("Continue") { _, _ ->
-                    val navController = findNavController()
-                    val navOptions = NavOptions.Builder()
-                        .setPopUpTo(R.id.navigation_login, true)
-                        .build()
-                    navController.navigate(R.id.navigation_home, null, navOptions)
-                }
-                create()
-            }.show()
-
-            // Change the color of the button text to black
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(resources.getColor(android.R.color.black))
+            val password = binding.passwordEditText.text.toString()
+            viewModel.loginUser(email, password)
         }
+    }
+
+    private fun showSuccessDialog(message: String) {
+        val dialog = AlertDialog.Builder(requireActivity()).apply {
+            setTitle("Yeay!")
+            setMessage(message)
+            setPositiveButton("Continue") { _, _ ->
+                findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+            }
+            create()
+        }.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     private fun playAnimation() {

@@ -7,7 +7,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -50,7 +51,7 @@ class HomeFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.menu_logout -> {
-                        viewModel.logout()
+                        showLogoutConfirmationDialog()
                         true
                     }
                     else -> false
@@ -71,8 +72,7 @@ class HomeFragment : Fragment() {
             mainViewModel.onMyPlantButtonClicked()
         }
         binding.cardAddReminder.setOnClickListener {
-            Toast.makeText(requireContext(), "Add Reminder Clicked!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_navigation_home_to_reminderFragment)
+            mainViewModel.onAddReminderButtonClicked()
         }
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
@@ -83,6 +83,21 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle(getString(R.string.logout))
+        builder.setMessage(getString(R.string.logout_alert_message))
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
+            viewModel.logout()
+        }
+        builder.setNegativeButton(getString(R.string.no)) { _, _ ->
+        }
+        val dialog = builder.create()
+        dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
     }
 
     override fun onDestroyView() {

@@ -1,12 +1,14 @@
 package com.dicoding.harvestscan.data.pref
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.dicoding.harvestscan.data.remote.response.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -14,11 +16,15 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun saveSession(user: UserModel) {
-        dataStore.edit { preferences ->
-            preferences[EMAIL_KEY] = user.email
-            preferences[TOKEN_KEY] = user.token
-            preferences[IS_LOGIN_KEY] = true
+    suspend fun saveSession(user: User) {
+        try {
+            dataStore.edit { preferences ->
+                preferences[EMAIL_KEY] = user.email
+                preferences[TOKEN_KEY] = user.stsTokenManager.accessToken
+                preferences[IS_LOGIN_KEY] = true
+            }
+        } catch (e: Exception) {
+            Log.e("UserPreference", "Error saving session", e)
         }
     }
 
