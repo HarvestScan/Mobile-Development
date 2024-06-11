@@ -12,5 +12,10 @@
     <color name="gray_soft">#EEEEEE</color>
     <color name="red">#D0342C</color>
 
+    <color name="timePickerHeaderColor">#EEEEEE</color>
+    <color name="timePickerBackgroundColor">#EEEEEE</color>
+    <color name="timePickerTextColor">#000000</color> <!-- warna teks -->
+    <color name="timePickerSelectorColor">#EEEEEE</color>
+
 
 </resources>
