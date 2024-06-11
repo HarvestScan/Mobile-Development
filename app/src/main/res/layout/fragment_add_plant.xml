@@ -5,187 +5,166 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     tools:context=".ui.myplant.AddPlantFragment">
-
-
-    <ImageView
-        android:id="@+id/image_add_plant"
-        android:layout_width="176dp"
-        android:layout_height="166dp"
-        android:contentDescription="@string/desc_image_plant"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="116dp"
-        tools:src="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/btn_gallery"
-        android:layout_width="122dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="@color/teal_500"
-        android:gravity="center"
-        android:text="@string/gallery"
-        android:textSize="18sp"
-        style="@style/Widget.Material3.Button.Icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_camera"
-        app:layout_constraintTop_toBottomOf="@+id/image_add_plant"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_camera"
-        android:layout_width="122dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="@color/teal_500"
-        android:text="@string/camera"
-        android:textSize="18sp"
-        android:gravity="center"
-        style="@style/Widget.Material3.Button.Icon"
-        app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_add_plant"
-        tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/title_add_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/poppins_bold_italic"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_semi_bold"
         android:text="@string/text_add_plant"
         android:textColor="@color/teal_500"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_add_plant"
+        android:layout_width="176dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/desc_image_plant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_add_plant"
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/desk_add_plant"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_regular"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/image_add_plant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/title_name_plant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_input_name"
+        android:text="@string/desk_add_plant"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="396dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/title_add_plant" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_input_name"
+        android:id="@+id/layout_input_message"
         android:layout_width="341dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="24dp"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
-        app:boxStrokeColor="#6200EE"
+        app:boxStrokeColor="@color/teal_500"
+        app:hintTextColor="@color/black"
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="416dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_input_name">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_add_description"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/hint_type_plant"
+            android:textColorHint="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/save_add_plant"
+        android:layout_width="110dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/save_add_plant"
+        style="@style/Widget.Material3.Button.Icon"
+        android:backgroundTint="@color/teal_500"
+        android:gravity="center"
+        android:textSize="15sp"
+        app:icon="@drawable/baseline_save_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_input_botanical_plant" />
+
+    <Button
+        android:id="@+id/btn_camera"
+        android:layout_width="122dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        style="@style/Widget.Material3.Button.Icon"
+        android:backgroundTint="@color/teal_500"
+        android:gravity="center"
+        android:text="@string/camera"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_add_plant" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_input_name"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeWidth="2dp"
+        app:boxStrokeColor="@color/teal_500"
+        app:hintTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_camera">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_name_plant"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/hint_name_plant"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <TextView
-        android:id="@+id/title_type_plant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_input_type"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+    <Button
+        android:id="@+id/btn_gallery"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="122dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/teal_500"
+        android:gravity="center"
+        android:text="@string/gallery"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="480dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_input_message"
-        android:layout_width="341dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxStrokeColor="#6200EE"
-        app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="500dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_add_description"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/hint_type_plant" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/title_botanical_plant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_input_botanical"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="562dp" />
+        app:layout_constraintStart_toEndOf="@+id/btn_camera"
+        app:layout_constraintTop_toBottomOf="@+id/image_add_plant" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_botanical_plant"
         android:layout_width="341dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
-        app:boxStrokeColor="#6200EE"
+        app:boxStrokeColor="@color/teal_500"
+        app:hintTextColor="@color/black"
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="582dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_input_message">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_botanical_plant"
@@ -193,25 +172,7 @@
             android:layout_height="50dp"
             android:hint="@string/hint_botanical_plant"
             android:inputType="text"
-            tools:ignore="MissingConstraints" />
+            android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/save_add_plant"
-        style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="122dp"
-        android:layout_height="54dp"
-        android:backgroundTint="@color/teal_500"
-        android:text="@string/save_add_plant"
-        android:textSize="15sp"
-        android:gravity="center"
-        app:icon="@drawable/baseline_save_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_input_botanical_plant"
-        app:layout_constraintVertical_bias="0.381" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

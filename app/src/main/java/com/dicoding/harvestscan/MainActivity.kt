@@ -1,6 +1,7 @@
 package com.dicoding.harvestscan
 
 import android.animation.ObjectAnimator
+import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 import com.dicoding.harvestscan.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
+
+        // Memulai animasi gradasi di card view with id "about"
+        startGradientAnimation()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
@@ -61,6 +66,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun startGradientAnimation() {
+        val aboutCardView: MaterialCardView = findViewById(R.id.about)
+        aboutCardView.setBackgroundResource(R.drawable.gradient_animation)
+        val animationDrawable = aboutCardView.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(1000)  // Durasi fade-in lebih cepat
+        animationDrawable.setExitFadeDuration(1000)   // Durasi fade-out lebih cepat
+        animationDrawable.start()
+    }
+
 
     private fun setupNavigation(navController: NavController) {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
