@@ -52,7 +52,7 @@
         android:id="@+id/layout_input_message"
         android:layout_width="341dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -70,7 +70,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_add_description"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:hint="@string/hint_type_plant"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +79,7 @@
         android:id="@+id/save_add_plant"
         android:layout_width="110dp"
         android:layout_height="54dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="7dp"
         android:text="@string/save_add_plant"
         style="@style/Widget.Material3.Button.Icon"
         android:backgroundTint="@color/teal_500"
@@ -109,7 +109,7 @@
         android:id="@+id/layout_input_name"
         android:layout_width="341dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -127,7 +127,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_name_plant"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:hint="@string/hint_name_plant"
             android:inputType="text"
             android:textColorHint="@color/black" />
@@ -169,7 +169,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_botanical_plant"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:hint="@string/hint_botanical_plant"
             android:inputType="text"
             android:textColorHint="@color/black" />

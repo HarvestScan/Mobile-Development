@@ -53,4 +53,5 @@
     <string name="logout_alert_message">Are you sure you want to logout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="helper_text">Max character</string>
 </resources>
