@@ -28,22 +28,7 @@ class MyPlantFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup segmented button
-        binding.segmentedButton.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (isChecked) {
-                when (checkedId) {
-                    R.id.btn_my_garden -> {
-                        // Handle My Garden button click
-                        // Toast.makeText(requireContext(), "My Garden selected", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_add_plant)
-                    }
-                    R.id.btn_reminder -> {
-                        // Navigate to ReminderFragment
-                        findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
-                    }
-                }
-            }
-        }
+
 
         // Setup Add Plant button
         binding.btnAddPlant.setOnClickListener {

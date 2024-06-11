@@ -11,46 +11,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
         android:text="My Plant"
-        android:textSize="24sp"
+        android:textSize="25sp"
+        android:textColor="@color/teal_500"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Segmented Button -->
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/segmentedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_my_garden"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="My Garden" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_reminder"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Reminder" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
     <!-- Add Plant Button -->
     <Button
         android:id="@+id/btnAddPlant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:text="Add Plant"
+        style="@style/Widget.Material3.Button.Icon"
+        android:backgroundTint="@color/teal_500"
+        android:textSize="15sp"
+        android:gravity="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="1dp"/>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlants"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_height="445dp"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
