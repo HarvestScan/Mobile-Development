@@ -7,6 +7,11 @@ android {
     namespace = "com.dicoding.harvestscan"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.dicoding.harvestscan"
         minSdk = 24
@@ -15,6 +20,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://testing-harvestscan1.et.r.appspot.com/api/\"")
     }
 
     buildTypes {
@@ -32,10 +38,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
-        buildConfig = true
     }
 }
 
@@ -59,13 +61,14 @@ dependencies {
     implementation(libs.tensorflow.lite.task.vision)
 
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.activity.ktx)
 
-    implementation ("com.github.bumptech.glide:glide:4.11.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
 
-    implementation ("androidx.navigation:navigation-fragment-ktx:<version>")
-    implementation ("androidx.navigation:navigation-ui-ktx:<version>")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
 }

@@ -14,6 +14,9 @@ class MainViewModel: ViewModel() {
     private val _navigateToHistory = MutableLiveData<Boolean>()
     val navigateToHistory: LiveData<Boolean> get() = _navigateToHistory
 
+    private val _navigateToAddReminder = MutableLiveData<Boolean>()
+    val navigateToAddReminder: LiveData<Boolean> get() = _navigateToAddReminder
+
     fun onScanButtonClicked() {
         _navigateToScan.value = true
     }
@@ -34,5 +37,13 @@ class MainViewModel: ViewModel() {
 
     fun onNavigatedToHistory() {
         _navigateToHistory.value = false
+    }
+
+    fun onAddReminderButtonClicked() {
+        _navigateToAddReminder.value = true
+    }
+
+    fun onNavigatedToAddReminder() {
+        _navigateToAddReminder.value = false
     }
 }
