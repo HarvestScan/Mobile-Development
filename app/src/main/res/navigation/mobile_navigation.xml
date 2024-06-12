@@ -70,7 +70,20 @@
         android:id="@+id/navigation_result"
         android:name="com.dicoding.harvestscan.ui.scan.ResultFragment"
         android:label="@string/title_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            android:defaultValue="default image" />
+        <argument
+            android:name="resultLabel"
+            app:argType="string"
+            android:defaultValue="default label" />
+        <argument
+            android:name="resultScore"
+            app:argType="string"
+            android:defaultValue="default score" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
