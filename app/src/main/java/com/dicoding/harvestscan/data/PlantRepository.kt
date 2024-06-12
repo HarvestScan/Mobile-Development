@@ -1,7 +1,7 @@
 package com.dicoding.harvestscan.data
 
-import PlantDao
 import com.dicoding.harvestscan.data.local.room.Plant
+import com.dicoding.harvestscan.data.local.room.PlantDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

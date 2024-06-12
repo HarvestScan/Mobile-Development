@@ -1,9 +1,10 @@
+package com.dicoding.harvestscan.data.local.room
+
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.dicoding.harvestscan.data.local.room.Plant
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentMyplantBinding
-import com.dicoding.harvestscan.viewmodel.PlantViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 
 class MyPlantFragment : Fragment() {
@@ -20,7 +18,7 @@ class MyPlantFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var plantAdapter: PlantAdapter
-    private val plantViewModel: PlantViewModel by viewModels {
+    private val plantViewModel: MyPlantViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -40,19 +38,33 @@ class MyPlantFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_add_plant)
         }
 
-        // Setup RecyclerView
-        plantAdapter = PlantAdapter {
-            findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
-        }
+//        Setup RecyclerView
+//        plantAdapter = PlantAdapter {
+//            findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
+//        }
+        plantAdapter = PlantAdapter(
+            onAddReminderClick = { plant ->
+                // Handle add reminder
+            },
+            onDeletePlantClick = { plant ->
+                plantViewModel.delete(plant)
+            }
+        )
+
+        // binding.recyclerViewPlants.adapter = plantAdapter
         binding.recyclerViewPlants.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = plantAdapter
         }
-
-        // Observe the plant data
-        plantViewModel.allPlants.observe(viewLifecycleOwner, Observer { plants ->
+        plantViewModel.allPlants.observe(viewLifecycleOwner) { plants ->
             plants?.let { plantAdapter.submitList(it) }
-        })
+        }
+
+//
+//        // Observe the plant data
+//        plantViewModel.allPlants.observe(viewLifecycleOwner, Observer { plants ->
+//            plants?.let { plantAdapter.submitList(it) }
+//        })
     }
 
     override fun onDestroyView() {

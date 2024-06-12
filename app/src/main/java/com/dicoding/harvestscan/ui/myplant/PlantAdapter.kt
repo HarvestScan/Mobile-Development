@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +15,10 @@ import com.bumptech.glide.Glide
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
 
-class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
-    ListAdapter<Plant, PlantAdapter.PlantViewHolder>(DiffCallback()) {
+class PlantAdapter(
+    private val onAddReminderClick: (Plant) -> Unit,
+    private val onDeletePlantClick: (Plant) -> Unit
+) : ListAdapter<Plant, PlantAdapter.PlantViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_plant, parent, false)
@@ -40,8 +44,7 @@ class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val plant = getItem(position)
-                    // Tambahkan kode untuk memulai aktivitas edit di sini
-                    // Misalnya: listener.onEditClicked(plant)
+                    // Add your edit plant code here
                 }
             }
 
@@ -49,10 +52,20 @@ class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val plant = getItem(position)
-                    // Tambahkan kode untuk menampilkan dialog konfirmasi delete di sini
-                    // Misalnya: listener.onDeleteClicked(plant)
+                    showDeleteDialog(plant)
                 }
             }
+        }
+
+        private fun showDeleteDialog(plant: Plant) {
+            AlertDialog.Builder(itemView.context)
+                .setMessage("Anda yakin ingin menghapus tanaman ini?")
+                .setPositiveButton("Ya") { dialog, which ->
+                    onDeletePlantClick(plant)
+                    Toast.makeText(itemView.context, "Tanaman telah dihapus", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Tidak", null)
+                .show()
         }
 
         fun bind(plant: Plant) {

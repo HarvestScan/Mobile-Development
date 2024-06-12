@@ -9,8 +9,8 @@ import com.dicoding.harvestscan.di.Injection
 import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
 import com.dicoding.harvestscan.ui.auth.register.RegisterViewModel
 import com.dicoding.harvestscan.ui.home.HomeViewModel
+import com.dicoding.harvestscan.ui.myplant.MyPlantViewModel
 import com.dicoding.harvestscan.ui.scan.ScanViewModel
-import com.dicoding.harvestscan.viewmodel.PlantViewModel
 
 class ViewModelFactory(private val repository: UserRepository, private val application: Application) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -31,8 +31,8 @@ class ViewModelFactory(private val repository: UserRepository, private val appli
             modelClass.isAssignableFrom(ScanViewModel::class.java) -> {
                 ScanViewModel() as T
             }
-            modelClass.isAssignableFrom(PlantViewModel::class.java) -> {
-                PlantViewModel(application) as T
+            modelClass.isAssignableFrom(MyPlantViewModel::class.java) -> {
+                MyPlantViewModel(application) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

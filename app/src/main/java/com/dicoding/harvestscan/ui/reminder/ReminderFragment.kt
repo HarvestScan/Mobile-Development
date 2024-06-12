@@ -17,8 +17,6 @@ class ReminderFragment : Fragment() {
     private lateinit var editTextReminderTime: EditText
     private lateinit var editTextNotes: EditText
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
