@@ -26,8 +26,8 @@
         android:layout_margin="26dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/bottom_nav_background"
-        android:padding="7dp"
-        app:itemIconSize="28dp"
+        android:padding="4dp"
+        app:itemIconSize="31dp"
         app:itemIconTint="@color/teal_500"
         app:itemShapeAppearanceOverlay="@style/BottomNavItemShape"
         app:itemTextColor="@color/teal_500"
@@ -41,9 +41,9 @@
 
     <View
         android:id="@+id/nav_host_fragment_main"
-        android:layout_width="65dp"
+        android:layout_width="74dp"
         android:layout_height="3dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="68dp"
         android:background="@drawable/indicator_bg"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintStart_toStartOf="parent"

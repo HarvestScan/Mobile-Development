@@ -1,13 +1,40 @@
-package com.dicoding.harvestscan.ui.myplant
+import android.app.Application
+import androidx.lifecycle.*
+import com.dicoding.harvestscan.data.PlantRepository
+import com.dicoding.harvestscan.data.local.room.Plant
+import com.dicoding.harvestscan.data.local.room.PlantDatabase
+import kotlinx.coroutines.launch
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+class PlantViewModel(application: Application) : AndroidViewModel(application) {
 
-class MyPlantViewModel : ViewModel() {
+    private val repository: PlantRepository
+    val allPlants: LiveData<List<Plant>>
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    init {
+        val plantDao = PlantDatabase.getDatabase(application).plantDao()
+        repository = PlantRepository(plantDao)
+        allPlants = repository.allPlants.asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun insert(plant: Plant) {
+        viewModelScope.launch {
+            repository.insert(plant)
+        }
+    }
+
+    fun delete(plant: Plant) {
+        viewModelScope.launch {
+            repository.delete(plant)
+        }
+    }
+}
+
+class PlantViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(PlantViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return PlantViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

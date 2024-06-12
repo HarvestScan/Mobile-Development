@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.harvestscan.R
+import com.dicoding.harvestscan.data.local.room.Plant
 
 class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
     ListAdapter<Plant, PlantAdapter.PlantViewHolder>(DiffCallback()) {
@@ -31,12 +32,34 @@ class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
         private val botanicalName: TextView = itemView.findViewById(R.id.botanicalName)
         private val plantImage: ImageView = itemView.findViewById(R.id.plantImage)
         private val addReminderButton: Button = itemView.findViewById(R.id.addReminderButton)
+        private val editPlantButton: ImageView = itemView.findViewById(R.id.editPlant)
+        private val deletePlantButton: ImageView = itemView.findViewById(R.id.deletePlant)
+
+        init {
+            editPlantButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val plant = getItem(position)
+                    // Tambahkan kode untuk memulai aktivitas edit di sini
+                    // Misalnya: listener.onEditClicked(plant)
+                }
+            }
+
+            deletePlantButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val plant = getItem(position)
+                    // Tambahkan kode untuk menampilkan dialog konfirmasi delete di sini
+                    // Misalnya: listener.onDeleteClicked(plant)
+                }
+            }
+        }
 
         fun bind(plant: Plant) {
             plantName.text = plant.name
             plantType.text = plant.type
             botanicalName.text = plant.botanicalName
-            Glide.with(itemView.context).load(plant.imageUrl).into(plantImage)
+            Glide.with(itemView.context).load(plant.imageUri).into(plantImage)
             addReminderButton.setOnClickListener {
                 onAddReminderClick(plant)
             }
