@@ -16,7 +16,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
-
 class UserRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference
