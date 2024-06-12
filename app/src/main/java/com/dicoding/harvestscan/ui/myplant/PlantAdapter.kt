@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.harvestscan.R
+import com.dicoding.harvestscan.data.local.room.Plant
 
 class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
     ListAdapter<Plant, PlantAdapter.PlantViewHolder>(DiffCallback()) {
@@ -36,7 +37,7 @@ class PlantAdapter(private val onAddReminderClick: (Plant) -> Unit) :
             plantName.text = plant.name
             plantType.text = plant.type
             botanicalName.text = plant.botanicalName
-            Glide.with(itemView.context).load(plant.imageUrl).into(plantImage)
+            Glide.with(itemView.context).load(plant.imageUri).into(plantImage)
             addReminderButton.setOnClickListener {
                 onAddReminderClick(plant)
             }
