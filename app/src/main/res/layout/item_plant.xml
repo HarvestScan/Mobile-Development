@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/outline_bg"
-    android:padding="8dp">
+    android:padding="30dp">
 
     <ImageView
         android:id="@+id/plantImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="354dp"
+        android:layout_height="324dp"
+        android:layout_gravity="center_vertical"
         android:scaleType="centerCrop" />
 
     <TextView
@@ -21,19 +22,76 @@
         android:textSize="18sp"
         android:layout_marginTop="8dp" />
 
-    <TextView
-        android:id="@+id/plantType"
+    <!-- Label "Type Plant" -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
 
-    <TextView
-        android:id="@+id/botanicalName"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type Plant : "
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/plantType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Label "Botanical Name" -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Botanical Name : "
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/botanicalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Menu Edit dan Delete -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <ImageView
+            android:id="@+id/editPlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_gravity="start"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/edit_plant"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/deletePlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_gravity="end"
+            android:contentDescription="@string/delete_plant"
+            app:tint="@color/black" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/addReminderButton"
