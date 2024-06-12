@@ -22,15 +22,14 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentScanBinding
 import com.dicoding.harvestscan.getImageUri
 import com.dicoding.harvestscan.helper.ImageClassifierHelper
-import org.tensorflow.lite.task.vision.classifier.Classifications
 
-class ScanFragment : Fragment() {
+class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
 
     private var _binding: FragmentScanBinding? = null
+    private val binding get() = _binding!!
+
     private var currentImageUri: Uri? = null
     private lateinit var imageClassifierHelper: ImageClassifierHelper
-
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +37,6 @@ class ScanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -63,6 +61,7 @@ class ScanFragment : Fragment() {
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCamera() }
         binding.btnAnalyze.setOnClickListener {
+            Log.d("ButtonAnalyze", "Tombol analyze diklik!")
             currentImageUri?.let {
                 analyzeImage(it)
             } ?: run {
@@ -79,6 +78,7 @@ class ScanFragment : Fragment() {
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
+
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
@@ -111,39 +111,40 @@ class ScanFragment : Fragment() {
             binding.tvInsertImage.text = getString(R.string.text_analyze)
         }
     }
+
     private fun analyzeImage(uri: Uri) {
         imageClassifierHelper = ImageClassifierHelper(
-            context = requireActivity(),
-            classifierListener = object : ImageClassifierHelper.ClassifierListener {
-                override fun onError(error: String) {
-                    showToast(error)
-                }
-
-                override fun onResults(results: List<Classifications>?) {
-                    results?.map { classifications ->
-                        val label = classifications.categories[0].label
-                        val confidenceScore = (classifications.categories[0].score * 100).toInt().toString()
-                        if (label != null){
-//                            binding.tvLabel.text = label
-//                            binding.tvScore.text = confidenceScore
-                        }
-                    }
-                }
-            }
+            context = requireContext(),
+            classifierListener = this
         )
 
         imageClassifierHelper.classifyStaticImage(uri)
     }
 
-//    private fun moveToResult(uri:Uri, label: String, score: String) {
-//        val intent = Intent(requireActivity(), ResultFragment::class.java)
-//        intent.putExtra(ResultFragment.EXTRA_IMAGE_URI, uri.toString())
-//        intent.putExtra(ResultFragment.EXTRA_RESULT_LABEL, label)
-//        intent.putExtra(ResultFragment.EXTRA_RESULT_SCORE, score)
-//        startActivity(intent)
-//    }
+    private fun moveToResult(uri: Uri, label: String, score: Float) {
+        val action = ScanFragmentDirections.actionNavigationScanToNavigationResult()
+        action.imageUri = uri.toString()
+        action.resultLabel = label
+        action.resultScore = score.toString()
+
+        findNavController().navigate(action)
+    }
 
     private fun showToast(message: String) {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onError(error: String) {
+        showToast(error)
+    }
+
+    override fun onResults(results: List<Pair<String, Float>>?) {
+        results?.let { result ->
+            if (result.isNotEmpty()) {
+                val topResult = result[0]
+                Log.d("HasilScan", "${topResult.first}: ${topResult.second}")
+                moveToResult(currentImageUri!!, topResult.first, topResult.second)
+            }
+        }
     }
 }
