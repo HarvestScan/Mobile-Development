@@ -1,5 +1,3 @@
-package com.dicoding.harvestscan.viewmodel
-
 import android.app.Application
 import androidx.lifecycle.*
 import com.dicoding.harvestscan.data.PlantRepository
@@ -18,8 +16,16 @@ class PlantViewModel(application: Application) : AndroidViewModel(application) {
         allPlants = repository.allPlants.asLiveData()
     }
 
-    fun insert(plant: Plant) = viewModelScope.launch {
-        repository.insert(plant)
+    fun insert(plant: Plant) {
+        viewModelScope.launch {
+            repository.insert(plant)
+        }
+    }
+
+    fun delete(plant: Plant) {
+        viewModelScope.launch {
+            repository.delete(plant)
+        }
     }
 }
 

@@ -1,5 +1,7 @@
 package com.dicoding.harvestscan.ui.myplant
 
+import PlantViewModel
+import PlantViewModelFactory
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,13 +15,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
-import com.dicoding.harvestscan.viewmodel.PlantViewModel
-import com.dicoding.harvestscan.viewmodel.PlantViewModelFactory
 import java.io.ByteArrayOutputStream
 
 class AddPlantFragment : Fragment() {
@@ -43,8 +44,9 @@ class AddPlantFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_plant, container, false)
 
-        plantViewModel = ViewModelProvider(this, PlantViewModelFactory(requireActivity().application))
-            .get(PlantViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = PlantViewModelFactory(application)
+        plantViewModel = ViewModelProvider(this, viewModelFactory).get(PlantViewModel::class.java)
 
         imageView = view.findViewById(R.id.image_add_plant)
         nameEditText = view.findViewById(R.id.desc_name_plant)
@@ -93,7 +95,6 @@ class AddPlantFragment : Fragment() {
         return Uri.parse(path.toString())
     }
 
-
     private fun savePlant() {
         val name = nameEditText.text.toString()
         val type = typeEditText.text.toString()
@@ -115,4 +116,18 @@ class AddPlantFragment : Fragment() {
         }
     }
 
+    private fun showDeleteConfirmationDialog(plant: Plant) {
+        AlertDialog.Builder(requireContext())
+            .setMessage("Anda yakin ingin menghapus tanaman ini?")
+            .setPositiveButton("Ya") { dialog, which ->
+                deletePlant(plant)
+                Toast.makeText(requireContext(), "Tanaman telah dihapus", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+    }
+
+    private fun deletePlant(plant: Plant) {
+        plantViewModel.delete(plant)
+    }
 }

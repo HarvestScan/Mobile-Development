@@ -54,4 +54,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="helper_text">Max character</string>
+    <string name="delete_plant">delete_content</string>
+    <string name="edit_plant">edit_content</string>
 </resources>
