@@ -45,7 +45,7 @@
     <string name="title_signup_page">"Create your account"</string>
     <string name="name">Name</string>
     <string name="register">Register</string>
-    <string name="dont_have_an_account">don\'t have an account?</string>
+    <string name="dont_have_an_account">Don\'t have an account? <b>Register</b></string>
     <string name="signup_failed_email_in_use">Email is already in use. Please use a different email address.</string>
     <string name="signup_success_message">User created successfully!</string>
     <string name="login_success_message">Login Successful</string>
@@ -58,4 +58,7 @@
     <string name="helper_text">Max character</string>
     <string name="delete_plant">delete_content</string>
     <string name="edit_plant">edit_content</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password_description">Enter your email to receive a reset password</string>
+    <string name="btn_submit">Submit</string>
 </resources>
