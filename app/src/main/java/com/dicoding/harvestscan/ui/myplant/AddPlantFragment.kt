@@ -9,7 +9,9 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,7 +19,6 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.databinding.FragmentAddPlantBinding
 import com.dicoding.harvestscan.ui.ViewModelFactory
-import com.google.android.material.textfield.TextInputEditText
 import java.io.ByteArrayOutputStream
 
 class AddPlantFragment : Fragment() {
@@ -91,25 +92,26 @@ class AddPlantFragment : Fragment() {
             val plant = Plant(name = name, type = type, botanicalName = botanicalName, imageUri = image)
             plantViewModel.insert(plant)
 
-            Toast.makeText(requireContext(), "Tanaman sudah ditambahkan", Toast.LENGTH_SHORT).show()
+            showCustomToast("Tanaman sudah ditambahkan")
             findNavController().navigate(R.id.navigation_my_plant)
         } else {
-            Toast.makeText(requireContext(), "Semua input harus diisi", Toast.LENGTH_SHORT).show()
+            showCustomToast("Semua input harus diisi")
         }
     }
 
-//    private fun showDeleteConfirmationDialog(plant: Plant) {
-//        AlertDialog.Builder(requireContext())
-//            .setMessage("Anda yakin ingin menghapus tanaman ini?")
-//            .setPositiveButton("Ya") { dialog, which ->
-//                deletePlant(plant)
-//                Toast.makeText(requireContext(), "Tanaman telah dihapus", Toast.LENGTH_SHORT).show()
-//            }
-//            .setNegativeButton("Tidak", null)
-//            .show()
-//    }
+    private fun showCustomToast(message: String) {
+        val toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
+        val view = toast.view
 
-//    private fun deletePlant(plant: Plant) {
-//        plantViewModel.delete(plant)
-//    }
+        // Ubah warna teks di dalam toast
+        val text = view?.findViewById<TextView>(android.R.id.message)
+        text?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+
+        toast.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

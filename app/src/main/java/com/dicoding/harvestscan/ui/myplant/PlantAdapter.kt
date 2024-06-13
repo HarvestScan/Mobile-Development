@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,18 +37,9 @@ class PlantAdapter(
         private val botanicalName: TextView = itemView.findViewById(R.id.botanicalName)
         private val plantImage: ImageView = itemView.findViewById(R.id.plantImage)
         private val addReminderButton: Button = itemView.findViewById(R.id.addReminderButton)
-        private val editPlantButton: ImageView = itemView.findViewById(R.id.editPlant)
         private val deletePlantButton: ImageView = itemView.findViewById(R.id.deletePlant)
 
         init {
-            editPlantButton.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val plant = getItem(position)
-                    // Add your edit plant code here
-                }
-            }
-
             deletePlantButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -58,15 +50,28 @@ class PlantAdapter(
         }
 
         private fun showDeleteDialog(plant: Plant) {
-            AlertDialog.Builder(itemView.context)
+            val alertDialog = AlertDialog.Builder(itemView.context)
                 .setMessage("Anda yakin ingin menghapus tanaman ini?")
                 .setPositiveButton("Ya") { dialog, which ->
                     onDeletePlantClick(plant)
                     Toast.makeText(itemView.context, "Tanaman telah dihapus", Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton("Tidak", null)
-                .show()
+                .create()
+
+            alertDialog.setOnShowListener {
+                // Ubah warna teks pesan
+                val messageTextView = alertDialog.findViewById<TextView>(android.R.id.message)
+                messageTextView?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+
+                // Ubah warna teks tombol
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+            }
+
+            alertDialog.show()
         }
+
 
         fun bind(plant: Plant) {
             plantName.text = plant.name

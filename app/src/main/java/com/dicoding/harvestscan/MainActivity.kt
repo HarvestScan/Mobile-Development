@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         animationDrawable.start()
     }
 
-
     private fun setupNavigation(navController: NavController) {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val indicator: View = findViewById(R.id.nav_host_fragment_main)
