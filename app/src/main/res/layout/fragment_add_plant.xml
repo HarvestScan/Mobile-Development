@@ -130,6 +130,7 @@
             android:layout_height="match_parent"
             android:hint="@string/hint_name_plant"
             android:inputType="text"
+            android:textCursorDrawable="@drawable/custom_cursor"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
