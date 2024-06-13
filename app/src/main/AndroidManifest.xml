@@ -7,7 +7,11 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name=".receiver.ReminderReceiver" android:exported="true" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    
 
     <application
         android:allowBackup="true"
@@ -43,6 +47,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <receiver android:name=".receiver.ReminderReceiver"/>
     </application>
 
 </manifest>
