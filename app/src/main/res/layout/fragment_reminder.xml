@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-
     tools:context=".ui.reminder.ReminderFragment">
 
     <!-- Judul Set Reminder -->
@@ -25,7 +24,7 @@
     <!-- Input nama tanaman -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_name"
-        android:layout_width="341dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:textColor="@color/black"
@@ -37,11 +36,7 @@
         app:boxStrokeColor="@color/teal_500"
         app:hintTextColor="@color/black"
         app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_camera">
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_plant_name"
@@ -50,13 +45,12 @@
             android:hint="Nama Tanaman"
             android:inputType="text"
             android:textColor="@color/black"
-            app:hintTextColor="@color/black"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_reminder_time"
-        android:layout_width="341dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
@@ -68,27 +62,88 @@
         app:boxStrokeColor="@color/teal_500"
         app:hintTextColor="@color/black"
         app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_input_name">
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_reminder_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@color/teal_500"
-            app:hintTextColor="@color/black"
             android:hint="Waktu Pengingat"
             android:focusable="false"
             android:clickable="true"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Layout untuk memilih hari-hari dalam seminggu -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Hari Pengingat:"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal">
+
+        <!-- Checkbox untuk setiap hari -->
+        <CheckBox
+            android:id="@+id/checkbox_monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senin" />
+
+        <!-- Tambahkan Checkbox untuk setiap hari lainnya -->
+        <!-- Selasa -->
+        <CheckBox
+            android:id="@+id/checkbox_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selasa" />
+
+        <!-- Rabu -->
+        <CheckBox
+            android:id="@+id/checkbox_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rabu" />
+
+        <!-- Kamis -->
+        <CheckBox
+            android:id="@+id/checkbox_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kamis" />
+
+        <!-- Jumat -->
+        <CheckBox
+            android:id="@+id/checkbox_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jumat" />
+
+        <!-- Sabtu -->
+        <CheckBox
+            android:id="@+id/checkbox_saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sabtu" />
+
+        <!-- Minggu -->
+        <CheckBox
+            android:id="@+id/checkbox_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minggu" />
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_notes"
-        android:layout_width="341dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
@@ -104,11 +159,7 @@
         app:counterEnabled="true"
         app:counterMaxLength="70"
         app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_input_reminder_time">
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_notes"

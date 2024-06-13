@@ -1,5 +1,6 @@
 package com.dicoding.harvestscan.ui.home
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -75,6 +76,8 @@ class HomeFragment : Fragment() {
             mainViewModel.onAddReminderButtonClicked()
         }
 
+        startGradientAnimation()  // Start the gradient animation on view created
+
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
                 val navController = findNavController()
@@ -83,6 +86,15 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun startGradientAnimation() {
+        val aboutCardView = binding.about
+        aboutCardView.setBackgroundResource(R.drawable.gradient_animation)
+        val animationDrawable = aboutCardView.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(1000)  // Durasi fade-in lebih cepat
+        animationDrawable.setExitFadeDuration(1000)   // Durasi fade-out lebih cepat
+        animationDrawable.start()
     }
 
     private fun showLogoutConfirmationDialog() {
