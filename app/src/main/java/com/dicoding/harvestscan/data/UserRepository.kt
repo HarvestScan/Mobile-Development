@@ -20,7 +20,7 @@ import retrofit2.HttpException
 
 class UserRepository private constructor(
     private val apiService: ApiService,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
 ) {
 
     suspend fun saveSession(user: User) {

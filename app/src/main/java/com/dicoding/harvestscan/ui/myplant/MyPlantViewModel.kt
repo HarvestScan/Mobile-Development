@@ -13,20 +13,20 @@ class MyPlantViewModel(application: Application) : ViewModel() {
     val allPlants: LiveData<List<Plant>>
 
     init {
-        val plantDao = PlantDatabase.getDatabase(application).plantDao()
-        repository = PlantRepository(plantDao)
+        val dao = PlantDatabase.getDatabase(application).HarvestScanDao()
+        repository = PlantRepository(dao)
         allPlants = repository.allPlants.asLiveData()
     }
 
     fun insert(plant: Plant) {
         viewModelScope.launch {
-            repository.insert(plant)
+            repository.insertPlant(plant)
         }
     }
 
     fun delete(plant: Plant) {
         viewModelScope.launch {
-            repository.delete(plant)
+            repository.deletePlant(plant)
         }
     }
 }

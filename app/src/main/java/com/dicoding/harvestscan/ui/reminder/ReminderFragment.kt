@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.dicoding.harvestscan.data.local.room.Reminder
 import com.dicoding.harvestscan.databinding.FragmentReminderBinding
 import com.dicoding.harvestscan.receiver.ReminderReceiver
+import com.dicoding.harvestscan.ui.ViewModelFactory
 import com.dicoding.harvestscan.viewmodel.ReminderViewModel
 import kotlinx.coroutines.launch
 import java.util.*
@@ -24,7 +25,9 @@ import java.util.*
 class ReminderFragment : Fragment() {
     private var _binding: FragmentReminderBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ReminderViewModel by viewModels()
+    private val viewModel: ReminderViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

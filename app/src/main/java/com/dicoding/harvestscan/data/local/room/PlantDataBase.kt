@@ -7,8 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Plant::class, Reminder::class], version = 1, exportSchema = false)
 abstract class PlantDatabase : RoomDatabase() {
-    abstract fun plantDao(): PlantDao
-    abstract fun reminderDao(): ReminderDao
+    abstract fun HarvestScanDao(): HarvestScanDao
 
     companion object {
         @Volatile

@@ -13,6 +13,7 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getSession().first() }
         val apiService = ApiConfig.getApiService(user.token)
+        // val database = PlantDatabase.getDatabase(context)
         return UserRepository.getInstance(apiService, pref)
     }
 }
