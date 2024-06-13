@@ -38,5 +38,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
         </style>
+
+    <style name="CustomTextInputTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
+        <!-- Tambahkan pengaturan lain yang diperlukan -->
+    </style>
 </resources>

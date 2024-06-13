@@ -2,7 +2,7 @@
 
     <style name="Theme.HarvestScan" parent="Theme.MaterialComponents.DayNight">
 
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/gray_soft</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
 
@@ -13,6 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <item name="android:fontFamily">@font/poppins</item>
+
+        <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
 
     </style>
     <style name="BottomSheetTransparent" parent="Theme.Material3.Light.BottomSheetDialog">

@@ -17,6 +17,7 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.databinding.FragmentAddPlantBinding
 import com.dicoding.harvestscan.ui.ViewModelFactory
+import com.google.android.material.textfield.TextInputEditText
 import java.io.ByteArrayOutputStream
 
 class AddPlantFragment : Fragment() {
