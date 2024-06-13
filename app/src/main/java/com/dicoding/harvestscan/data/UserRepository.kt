@@ -7,9 +7,11 @@ import com.dicoding.harvestscan.data.pref.UserPreference
 import com.dicoding.harvestscan.data.remote.response.RegisterResponse
 import com.dicoding.harvestscan.data.remote.retrofit.ApiService
 import com.dicoding.harvestscan.data.remote.Result
+import com.dicoding.harvestscan.data.remote.request.ForgotPasswordResquest
 import com.dicoding.harvestscan.data.remote.request.LoginRequest
 import com.dicoding.harvestscan.data.remote.request.RegisterRequest
 import com.dicoding.harvestscan.data.remote.response.ErrorResponse
+import com.dicoding.harvestscan.data.remote.response.ForgotPasswordResponse
 import com.dicoding.harvestscan.data.remote.response.LoginResponse
 import com.dicoding.harvestscan.data.remote.response.User
 import com.google.gson.Gson
@@ -54,6 +56,16 @@ class UserRepository private constructor(
             emit(handleHttpException(e))
         } catch (e: Exception) {
             emit(Result.Error(e.message ?: "Unknown error"))
+        }
+    }
+    fun forgotPassword(email: String): LiveData<Result<ForgotPasswordResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val request = ForgotPasswordResquest(email)
+            val response = apiService.forgotPassword(request)
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            emit(handleHttpException(e))
         }
     }
 

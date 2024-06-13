@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_navigation_login_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_login_to_navogation_forgot_password"
+            app:destination="@id/navigation_forgot_password" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_forgot_password"
+        android:name="com.dicoding.harvestscan.ui.auth.login.ForgotPasswordFragment"
+        android:label="@string/forgot_password"
+        tools:layout="@layout/fragment_login">
     </fragment>
 
     <fragment

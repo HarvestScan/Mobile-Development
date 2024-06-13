@@ -57,7 +57,7 @@ class LoginFragment : Fragment() {
                     is Result.Success -> {
                         showLoading(false)
                         loginProcess(result.data.userCredential.user)
-                        showSuccessDialog(result.data.message)
+                        showSuccessDialog(result.data.message, R.id.action_navigation_login_to_navigation_home)
                     }
                     is Result.Error -> {
                         showLoading(false)
@@ -95,14 +95,17 @@ class LoginFragment : Fragment() {
             val password = binding.passwordEditText.text.toString()
             viewModel.loginUser(email, password)
         }
+        binding.forgotPassword.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.action_navigation_login_to_navogation_forgot_password)
+        }
     }
 
-    private fun showSuccessDialog(message: String) {
+    private fun showSuccessDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
             setTitle("Yeay!")
             setMessage(message)
             setPositiveButton("Continue") { _, _ ->
-                findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+                findNavController().navigate(navigate)
             }
             create()
         }.show()
