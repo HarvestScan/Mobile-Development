@@ -18,9 +18,9 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel(){
     private val _forgotPasswordResult = MutableLiveData<Result<ForgotPasswordResponse>>()
     val forgotPasswordResult: LiveData<Result<ForgotPasswordResponse>> = _forgotPasswordResult
 
-
+    // Comment
     fun loginUser(email: String, password: String) {
-        repository.loginUser(email, password).observeForever {
+        repository.loginUser(email, password).observeForever{
             _loginResult.value = it
         }
     }
