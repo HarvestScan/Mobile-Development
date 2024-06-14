@@ -1,13 +1,15 @@
 package com.dicoding.harvestscan.ui.reminder
 
-import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
+import android.os.Build
+import android.graphics.Color
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import com.dicoding.harvestscan.MainActivity
 import com.dicoding.harvestscan.R
 
 class ReminderReceiver : BroadcastReceiver() {
@@ -15,27 +17,42 @@ class ReminderReceiver : BroadcastReceiver() {
         val plantName = intent.getStringExtra("plantName")
         val notes = intent.getStringExtra("notes")
 
-        val notification = NotificationCompat.Builder(context, "REMINDER_CHANNEL")
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Pengingat Tanaman")
-            .setContentText("Ingat untuk merawat tanaman: $plantName. $notes")
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val notificationId = System.currentTimeMillis().toInt()
+        val channelId = "reminder_channel"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Reminder Channel",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Channel for reminder notifications"
+                enableLights(true)
+                lightColor = Color.RED
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val mainIntent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            mainIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(R.drawable.apk_logo)
+            .setContentTitle("Pengingat untuk Tanaman")
+            .setContentText("Ingat untuk merawat $plantName. $notes")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
             .build()
 
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        NotificationManagerCompat.from(context).notify(0, notification)
+        notificationManager.notify(notificationId, notification)
     }
 }
