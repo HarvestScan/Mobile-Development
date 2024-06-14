@@ -1,18 +1,42 @@
 package com.dicoding.harvestscan.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.dicoding.harvestscan.data.local.room.HarvestScanDao
 import com.dicoding.harvestscan.data.local.room.Plant
+import com.dicoding.harvestscan.data.local.room.Reminder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class PlantRepository(private val dao: HarvestScanDao) {
+class PlantRepository(private val harvestScanDao: HarvestScanDao) {
 
-    val allPlants = dao.getAllPlants()
+    // val allPlants: Flow<List<Plant>> = harvestScanDao.getAllPlants()
+    fun getAllPlants(): LiveData<List<Plant>> {
+        return harvestScanDao.getAllPlants().asLiveData(Dispatchers.IO)
+    }
 
     suspend fun insertPlant(plant: Plant) {
-        dao.insertPlant(plant)
+        withContext(Dispatchers.IO) {
+            harvestScanDao.insertPlant(plant)
+        }
     }
 
     suspend fun deletePlant(plant: Plant) {
-        dao.deleteRemindersByPlantName(plant.name)
-        dao.deletePlant(plant)
+        withContext(Dispatchers.IO) {
+            harvestScanDao.deletePlant(plant)
+        }
     }
+
+    suspend fun insertReminder(reminder: Reminder){
+        withContext(Dispatchers.IO){
+            harvestScanDao.insertReminder(reminder)
+        }
+    }
+    fun getPlantById(plantId: Int): LiveData<Plant> {
+        return harvestScanDao.getPlantById(plantId)
+    }
+
+//    fun getAllPlants(): LiveData<List<Plant>> {
+//        return harvestScanDao.getAllPlants()
+//    }
 }

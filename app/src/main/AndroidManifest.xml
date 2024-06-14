@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name=".receiver.ReminderReceiver" android:exported="true" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    
 
     <application
         android:allowBackup="true"
@@ -47,7 +46,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <receiver android:name=".receiver.ReminderReceiver"/>
+        <receiver android:name=".ui.reminder.ReminderReceiver"/>
     </application>
 
 </manifest>

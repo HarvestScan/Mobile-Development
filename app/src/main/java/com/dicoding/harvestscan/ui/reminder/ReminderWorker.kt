@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.worker
+package com.dicoding.harvestscan.ui.reminder
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

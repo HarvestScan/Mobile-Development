@@ -1,17 +1,33 @@
-package com.dicoding.harvestscan.viewmodel
+package com.dicoding.harvestscan.ui.reminder
 
+import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.harvestscan.data.local.room.HarvestScanDao
+import com.dicoding.harvestscan.data.PlantRepository
 import com.dicoding.harvestscan.data.local.room.Plant
-import kotlinx.coroutines.flow.Flow
+import com.dicoding.harvestscan.data.local.room.PlantDatabase
+import com.dicoding.harvestscan.data.local.room.Reminder
 import kotlinx.coroutines.launch
 
-class ReminderViewModel(private val plantRepository: HarvestScanDao) : ViewModel() {
 
-    val allPlants: Flow<List<Plant>> = plantRepository.allPlants
+class ReminderViewModel (application: Application) : ViewModel() {
+    private val repository: PlantRepository
+    init {
+        val dao = PlantDatabase.getDatabase(application).HarvestScanDao()
+        repository = PlantRepository(dao)
+    }
+    fun insertReminder(reminder: Reminder) {
+        viewModelScope.launch {
+            repository.insertReminder(reminder)
+        }
+    }
 
-    fun insertPlant(plant: Plant) = viewModelScope.launch {
-        plantRepository.insertPlant(plant)
+    fun getPlantById(plantId: Int): LiveData<Plant> {
+        return repository.getPlantById(plantId)
+    }
+
+    fun getAllPlants(): LiveData<List<Plant>> {
+        return repository.getAllPlants()
     }
 }

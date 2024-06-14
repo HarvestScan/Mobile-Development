@@ -1,16 +1,11 @@
 package com.dicoding.harvestscan.data.local.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HarvestScanDao {
-    // Operasi untuk Plant
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPlant(plant: Plant)
 
@@ -18,21 +13,19 @@ interface HarvestScanDao {
     suspend fun deletePlant(plant: Plant)
 
     @Query("SELECT * FROM plants")
-    fun getAllPlants(): Flow<List<Plant>> // Menggunakan Flow untuk pengambilan data secara asinkron
+    fun getAllPlants(): Flow<List<Plant>>
 
-    // Operasi untuk Reminder
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReminder(reminder: Reminder)
 
     @Query("SELECT * FROM reminders")
-    fun getAllReminders(): Flow<List<Reminder>> // Pastikan Reminder diimport dengan benar
+    fun getAllReminders(): Flow<List<Reminder>>
 
-    @Query("DELETE FROM reminders WHERE plantName = :plantName")
-    suspend fun deleteRemindersByPlantName(plantName: String)
+//    @Transaction
+//    @Query("SELECT * FROM plants WHERE id = :plantId")
+//    fun getPlantWithReminders(plantId: Int): Flow<PlantWithReminders>
 
-    @Transaction
-    suspend fun deletePlantAndReminders(plant: Plant) {
-        deleteRemindersByPlantName(plant.name)
-        deletePlant(plant)
-    }
+    @Query("SELECT * FROM plants WHERE id = :plantId")
+    fun getPlantById(plantId: Int): LiveData<Plant>
 }

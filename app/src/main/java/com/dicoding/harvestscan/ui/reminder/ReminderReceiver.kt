@@ -1,17 +1,16 @@
-package com.dicoding.harvestscan.receiver
+package com.dicoding.harvestscan.ui.reminder
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.graphics.Color
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.graphics.Color
 import androidx.core.app.NotificationCompat
 import com.dicoding.harvestscan.MainActivity
 import com.dicoding.harvestscan.R
-
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

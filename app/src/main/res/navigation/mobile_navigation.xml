@@ -60,7 +60,15 @@
         android:id="@+id/navigation_reminder"
         android:name="com.dicoding.harvestscan.ui.reminder.ReminderFragment"
         android:label="Reminder Fragment"
-        tools:layout="@layout/fragment_reminder" />
+        tools:layout="@layout/fragment_reminder">
+        <argument
+            android:name="plantId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_navigation_reminder_to_navigation_my_plant"
+            app:destination="@id/navigation_my_plant" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_scan"

@@ -15,7 +15,7 @@ class MyPlantViewModel(application: Application) : ViewModel() {
     init {
         val dao = PlantDatabase.getDatabase(application).HarvestScanDao()
         repository = PlantRepository(dao)
-        allPlants = repository.allPlants.asLiveData()
+        allPlants = repository.getAllPlants()
     }
 
     fun insert(plant: Plant) {
