@@ -22,11 +22,17 @@
         android:layout_marginBottom="16dp"/>
 
     <!-- Input nama tanaman -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Tanaman:"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
@@ -35,17 +41,13 @@
         app:boxCornerRadiusTopStart="16dp"
         app:boxStrokeColor="@color/teal_500"
         app:hintTextColor="@color/black"
-        app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text">
+        app:boxStrokeWidth="2dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_plant_name"
+        <Spinner
+            android:id="@+id/spinner_plant_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Tanaman"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:spinnerMode="dropdown" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -74,21 +76,22 @@
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <!-- Layout untuk memilih hari-hari dalam seminggu -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pilih Hari Pengingat:"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black" />
 
-
-    <LinearLayout
+    <GridLayout
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal">
+        android:columnCount="4"
+        android:rowCount="2"
+        android:layout_marginTop="2dp" >
 
         <!-- Checkbox untuk setiap hari -->
         <CheckBox
@@ -139,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Minggu" />
-    </LinearLayout>
+    </GridLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_notes"

@@ -28,7 +28,7 @@ class PlantAdapter(
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         val plant = getItem(position)
-        holder.bind(plant)
+        holder.bind(plant, onAddReminderClick)
     }
 
     inner class PlantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,20 +51,20 @@ class PlantAdapter(
 
         private fun showDeleteDialog(plant: Plant) {
             val alertDialog = AlertDialog.Builder(itemView.context)
-                .setMessage("Anda yakin ingin menghapus tanaman ini?")
-                .setPositiveButton("Ya") { dialog, which ->
+                .setMessage("Are you sure you want to delete this plant?")
+                .setPositiveButton("Yes") { dialog, which ->
                     onDeletePlantClick(plant)
-                    Toast.makeText(itemView.context, "Tanaman telah dihapus", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(itemView.context, "Plant deleted", Toast.LENGTH_SHORT).show()
                 }
-                .setNegativeButton("Tidak", null)
+                .setNegativeButton("No", null)
                 .create()
 
             alertDialog.setOnShowListener {
-                // Ubah warna teks pesan
+                // Change message text color
                 val messageTextView = alertDialog.findViewById<TextView>(android.R.id.message)
                 messageTextView?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
 
-                // Ubah warna teks tombol
+                // Change button text color
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
             }
@@ -72,12 +72,12 @@ class PlantAdapter(
             alertDialog.show()
         }
 
-
-        fun bind(plant: Plant) {
+        fun bind(plant: Plant, onAddReminderClick: (Plant) -> Unit) {
             plantName.text = plant.name
             plantType.text = plant.type
             botanicalName.text = plant.botanicalName
             Glide.with(itemView.context).load(plant.imageUri).into(plantImage)
+
             addReminderButton.setOnClickListener {
                 onAddReminderClick(plant)
             }
@@ -86,7 +86,7 @@ class PlantAdapter(
 
     class DiffCallback : DiffUtil.ItemCallback<Plant>() {
         override fun areItemsTheSame(oldItem: Plant, newItem: Plant): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Plant, newItem: Plant): Boolean {

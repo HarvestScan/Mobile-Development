@@ -10,8 +10,8 @@ import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
 import com.dicoding.harvestscan.ui.auth.register.RegisterViewModel
 import com.dicoding.harvestscan.ui.home.HomeViewModel
 import com.dicoding.harvestscan.ui.myplant.MyPlantViewModel
+import com.dicoding.harvestscan.ui.reminder.ReminderViewModel
 import com.dicoding.harvestscan.ui.scan.ScanViewModel
-import com.dicoding.harvestscan.viewmodel.ReminderViewModel
 
 class ViewModelFactory(
     private val repository: UserRepository,

@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.receiver
+package com.dicoding.harvestscan.ui.reminder
 
 import android.Manifest
 import android.content.BroadcastReceiver

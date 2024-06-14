@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 if (navController.currentDestination?.id != R.id.navigation_login) {
                     navController.navigate(R.id.navigation_login)
                 }
-                // Hide BottomNavigationView
+                // Hide BottomNavigationView and indicator
                 binding.navView.visibility = View.GONE
                 binding.navHostFragmentMain.visibility = View.GONE
                 return@observe
@@ -60,9 +60,11 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_login, R.id.navigation_register, R.id.navigation_forgot_password -> {
                     binding.navView.visibility = View.GONE
+                    binding.navHostFragmentMain.visibility = View.GONE
                 }
                 else -> {
                     binding.navView.visibility = View.VISIBLE
+                    binding.navHostFragmentMain.visibility = View.VISIBLE
                 }
             }
         }

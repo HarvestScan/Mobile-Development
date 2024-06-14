@@ -9,16 +9,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.dicoding.harvestscan.R
+import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.data.local.room.Reminder
 import com.dicoding.harvestscan.databinding.FragmentReminderBinding
-import com.dicoding.harvestscan.receiver.ReminderReceiver
 import com.dicoding.harvestscan.ui.ViewModelFactory
-import com.dicoding.harvestscan.viewmodel.ReminderViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -28,6 +33,9 @@ class ReminderFragment : Fragment() {
     private val viewModel: ReminderViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
+    private var plantId: Int = -1
+    private lateinit var plantList: List<Plant>
+    private lateinit var plantSpinner: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +47,34 @@ class ReminderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkPlantCountAndRedirect()
+
+        // Retrieve arguments using Safe Args
+        val args = ReminderFragmentArgs.fromBundle(requireArguments())
+        plantId = args.plantId
+
+        // Initialize UI components
+        plantSpinner = binding.spinnerPlantName
+
+        // Observe plant list from ViewModel
+        viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
+            plantList = plants
+            val plantNames = plants.map { it.name }
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, plantNames)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            plantSpinner.adapter = adapter
+
+            // Select the appropriate plant in the spinner if plantId is provided
+            if (plantId != -1) {
+                val selectedPlant = plants.find { it.id == plantId }
+                selectedPlant?.let { plant ->
+                    val position = adapter.getPosition(plant.name)
+                    if (position != -1) {
+                        plantSpinner.setSelection(position)
+                    }
+                }
+            }
+        }
 
         binding.editTextReminderTime.setOnClickListener {
             showTimePickerDialog(binding.editTextReminderTime)
@@ -48,6 +84,14 @@ class ReminderFragment : Fragment() {
             saveReminder()
         }
     }
+    private fun checkPlantCountAndRedirect() {
+        viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
+            if (plants.isEmpty()) {
+                // Tidak ada tanaman, alihkan ke halaman My Plant
+                showAlertDialog("Tambahkan tanaman terlebih dahulu.", R.id.action_navigation_reminder_to_navigation_my_plant)
+            }
+        }
+    }
 
     private fun showTimePickerDialog(editText: EditText) {
         val calendar = Calendar.getInstance()
@@ -55,7 +99,7 @@ class ReminderFragment : Fragment() {
         val minute = calendar.get(Calendar.MINUTE)
 
         val timePickerDialog = TimePickerDialog(
-            context,
+            requireContext(),
             { _, selectedHour, selectedMinute ->
                 editText.setText(String.format("%02d:%02d", selectedHour, selectedMinute))
             },
@@ -67,19 +111,23 @@ class ReminderFragment : Fragment() {
     }
 
     private fun saveReminder() {
-        val plantName = binding.editTextPlantName.text.toString().trim()
+        val selectedPlantName = plantSpinner.selectedItem as String
+        val selectedPlant = plantList.find { it.name == selectedPlantName }
+        if (selectedPlant != null) {
+            plantId = selectedPlant.id
+        }
+
         val reminderTime = binding.editTextReminderTime.text.toString().trim()
         val notes = binding.editTextNotes.text.toString().trim()
-
         val daysOfWeek = getSelectedDays()
 
-        if (plantName.isEmpty() || reminderTime.isEmpty() || daysOfWeek.isEmpty()) {
-            Toast.makeText(context, "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
+        if (plantId == -1 || reminderTime.isEmpty() || daysOfWeek.isEmpty()) {
+            Toast.makeText(requireContext(), "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
             return
         }
 
         val reminder = Reminder(
-            plantName = plantName,
+            plantId = plantId,
             reminderTime = reminderTime,
             daysOfWeek = daysOfWeek,
             notes = notes
@@ -88,7 +136,7 @@ class ReminderFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.insertReminder(reminder)
             setAlarm(reminder) // Set the alarm after saving the reminder
-            Toast.makeText(context, "Pengingat berhasil disimpan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Pengingat berhasil disimpan!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -110,7 +158,7 @@ class ReminderFragment : Fragment() {
 
         reminder.daysOfWeek.split(", ").forEach { day ->
             val intent = Intent(context, ReminderReceiver::class.java).apply {
-                putExtra("plantName", reminder.plantName)
+                putExtra("plantName", reminder.plantId)
                 putExtra("notes", reminder.notes)
             }
 
@@ -150,6 +198,17 @@ class ReminderFragment : Fragment() {
                 pendingIntent
             )
         }
+    }
+    private fun showAlertDialog(message: String, navigate: Int) {
+        val dialog = AlertDialog.Builder(requireActivity()).apply {
+            setTitle("Belum ada tanaman!")
+            setMessage(message)
+            setPositiveButton("Continue") { _, _ ->
+                findNavController().navigate(navigate)
+            }
+            create()
+        }.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
     }
 
     override fun onDestroyView() {

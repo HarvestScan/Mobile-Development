@@ -1,15 +1,19 @@
 package com.dicoding.harvestscan.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.dicoding.harvestscan.data.local.room.HarvestScanDao
 import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.data.local.room.Reminder
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class PlantRepository(private val harvestScanDao: HarvestScanDao) {
 
-    val allPlants: Flow<List<Plant>> = harvestScanDao.getAllPlants()
+    // val allPlants: Flow<List<Plant>> = harvestScanDao.getAllPlants()
+    fun getAllPlants(): LiveData<List<Plant>> {
+        return harvestScanDao.getAllPlants().asLiveData(Dispatchers.IO)
+    }
 
     suspend fun insertPlant(plant: Plant) {
         withContext(Dispatchers.IO) {
@@ -28,4 +32,11 @@ class PlantRepository(private val harvestScanDao: HarvestScanDao) {
             harvestScanDao.insertReminder(reminder)
         }
     }
+    fun getPlantById(plantId: Int): LiveData<Plant> {
+        return harvestScanDao.getPlantById(plantId)
+    }
+
+//    fun getAllPlants(): LiveData<List<Plant>> {
+//        return harvestScanDao.getAllPlants()
+//    }
 }

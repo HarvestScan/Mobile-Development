@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.harvestscan.R
+import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.databinding.FragmentMyplantBinding
 import com.dicoding.harvestscan.ui.ViewModelFactory
 
@@ -33,38 +34,40 @@ class MyPlantFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
         // Setup Add Plant button
         binding.btnAddPlant.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_add_plant)
         }
+    }
 
-//        Setup RecyclerView
-//        plantAdapter = PlantAdapter {
-//            findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
-//        }
+    private fun setupRecyclerView() {
         plantAdapter = PlantAdapter(
             onAddReminderClick = { plant ->
-                // Handle add reminder
+                navigateToAddReminder(plant)
             },
             onDeletePlantClick = { plant ->
                 plantViewModel.delete(plant)
             }
         )
 
-        // binding.recyclerViewPlants.adapter = plantAdapter
         binding.recyclerViewPlants.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = plantAdapter
         }
+
+        // Observe the plant data
         plantViewModel.allPlants.observe(viewLifecycleOwner) { plants ->
             plants?.let { plantAdapter.submitList(it) }
         }
+    }
 
-//
-//        // Observe the plant data
-//        plantViewModel.allPlants.observe(viewLifecycleOwner, Observer { plants ->
-//            plants?.let { plantAdapter.submitList(it) }
-//        })
+    private fun navigateToAddReminder(plant: Plant) {
+        // Navigating to ReminderFragment from MyPlantFragment
+        val action = MyPlantFragmentDirections.actionNavigationMyPlantToNavigationReminder()
+        action.plantId = plant.id
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
