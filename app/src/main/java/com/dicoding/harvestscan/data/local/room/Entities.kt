@@ -45,3 +45,13 @@ data class PlantWithReminders(
     )
     val reminders: List<Reminder>
 )
+
+@Entity(tableName = "history")
+data class ScanHistory(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val label: String,
+    val confidenceScore: Float,
+    val description: String,
+    val tips: String,
+    val imageUri: String
+)

@@ -28,4 +28,14 @@ interface HarvestScanDao {
 
     @Query("SELECT * FROM plants WHERE id = :plantId")
     fun getPlantById(plantId: Int): LiveData<Plant>
+
+    // Menambahkan data ke history
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertHistory(scanHistory: ScanHistory)
+    // Mengambil semua history
+    @Query("SELECT * FROM history ORDER BY id DESC")
+    fun getAllHistory(): LiveData<List<ScanHistory>>
+
+    @Query("SELECT * FROM history WHERE id = :scanId")
+    fun getScanHistoryById(scanId: Int): ScanHistory?
 }

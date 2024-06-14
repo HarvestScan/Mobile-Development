@@ -16,17 +16,25 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.databinding.FragmentScanBinding
 import com.dicoding.harvestscan.getImageUri
 import com.dicoding.harvestscan.helper.ImageClassifierHelper
+import com.dicoding.harvestscan.data.local.DiseaseData
+import com.dicoding.harvestscan.data.local.room.ScanHistory
+import com.dicoding.harvestscan.ui.ViewModelFactory
+import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
 
 class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
 
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ScanViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
 
     private var currentImageUri: Uri? = null
     private lateinit var imageClassifierHelper: ImageClassifierHelper
@@ -121,11 +129,13 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         imageClassifierHelper.classifyStaticImage(uri)
     }
 
-    private fun moveToResult(uri: Uri, label: String, score: Float) {
+    private fun moveToResult(uri: Uri, label: String, score: Float, description: String, tips: String) {
         val action = ScanFragmentDirections.actionNavigationScanToNavigationResult()
         action.imageUri = uri.toString()
         action.resultLabel = label
         action.resultScore = score.toString()
+        action.resultDescription = description
+        action.resultTips = tips
 
         findNavController().navigate(action)
     }
@@ -142,9 +152,23 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         results?.let { result ->
             if (result.isNotEmpty()) {
                 val topResult = result[0]
+                val diseaseInfo = DiseaseData.diseaseDetails[topResult.first]
+                val description = diseaseInfo?.description ?: "No description available"
+                val tips = diseaseInfo?.tips ?: "No tips available"
                 Log.d("HasilScan", "${topResult.first}: ${topResult.second}")
-                moveToResult(currentImageUri!!, topResult.first, topResult.second)
+
+                val scanHistory = ScanHistory(
+                    label = topResult.first,
+                    confidenceScore = topResult.second,
+                    description = description,
+                    tips = tips,
+                    imageUri = currentImageUri.toString()
+                )
+                viewModel.addScanHistory(scanHistory)
+
+                moveToResult(currentImageUri!!, topResult.first, topResult.second, description, tips)
             }
         }
     }
+
 }

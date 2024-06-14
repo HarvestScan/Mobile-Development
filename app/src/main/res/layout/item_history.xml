@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="74dp"
+    android:padding="7dp"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/image_history_scan"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="16dp"
+        android:contentDescription="image_leaf" />
+
+    <TextView
+        android:id="@+id/tv_label_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/image_history_scan"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/tv_score_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_label_history"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@id/image_history_scan"
+        android:paddingEnd="16dp"
+        android:maxLines="2"/>
+
+</RelativeLayout>

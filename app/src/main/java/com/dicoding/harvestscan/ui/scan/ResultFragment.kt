@@ -17,7 +17,6 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentResultBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,6 +25,8 @@ class ResultFragment : Fragment() {
         val image = ResultFragmentArgs.fromBundle(arguments as Bundle).imageUri
         val label = ResultFragmentArgs.fromBundle(arguments as Bundle).resultLabel
         val score = ResultFragmentArgs.fromBundle(arguments as Bundle).resultScore
+        val description = ResultFragmentArgs.fromBundle(arguments as Bundle).resultDescription
+        val tips = ResultFragmentArgs.fromBundle(arguments as Bundle).resultTips
 
         image.let {
             binding.resultImage.setImageURI(Uri.parse(it))
@@ -36,21 +37,12 @@ class ResultFragment : Fragment() {
             binding.resultText.text = it
         }
 
-//        mBookmarkViewModel = ViewModelProvider(this)[BookmarkViewModel::class.java]
-
-//        mBookmarkViewModel.resultDeleteBookmark.observe(this){
-//            binding.fabBookmark.setImageResource(R.drawable.ic_bookmark_border)
-//        }
-//
-//        mBookmarkViewModel.resultSuccesBookmark.observe(this){
-//            binding.fabBookmark.setImageResource(R.drawable.ic_bookmark_fill)
-//        }
-//        mBookmarkViewModel.findBookmarkItem(image){
-//            binding.fabBookmark.setImageResource(R.drawable.ic_bookmark_fill)
-//        }
-//        binding.fabBookmark.setOnClickListener{
-//            mBookmarkViewModel.setBookmark(image, label, score, true)
-//        }
+        binding.resultDesc.text = description
+        binding.resultTips.text = tips
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
