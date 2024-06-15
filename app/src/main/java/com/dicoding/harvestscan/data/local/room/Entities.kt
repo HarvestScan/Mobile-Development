@@ -50,7 +50,7 @@ data class PlantWithReminders(
 data class ScanHistory(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val label: String,
-    val confidenceScore: Float,
+    val confidenceScore: String,
     val description: String,
     val tips: String,
     val imageUri: String

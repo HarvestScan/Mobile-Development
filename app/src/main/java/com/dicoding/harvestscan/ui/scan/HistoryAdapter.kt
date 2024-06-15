@@ -9,7 +9,8 @@ import com.dicoding.harvestscan.databinding.ItemHistoryBinding
 
 class HistoryAdapter(
     var historyList: List<ScanHistory>,
-    private val onItemClicked: (ScanHistory) -> Unit
+    private val onItemClicked: (ScanHistory) -> Unit,
+    private val onDeleteClicked: (ScanHistory) -> Unit
 ) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -20,15 +21,20 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val historyItem = historyList[position]
         holder.bind(historyItem, onItemClicked)
+
+        holder.binding.btnDelete.setOnClickListener {
+            onDeleteClicked(historyItem)
+        }
     }
 
     override fun getItemCount(): Int = historyList.size
 
-    class HistoryViewHolder(private val binding: ItemHistoryBinding) :
+    inner class HistoryViewHolder(internal val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(scanHistory: ScanHistory, onItemClicked: (ScanHistory) -> Unit) {
+            binding.imageHistoryScan.setImageURI(Uri.parse(scanHistory.imageUri))
             binding.tvLabelHistory.text = scanHistory.label
-            binding.tvScoreHistory.text = scanHistory.confidenceScore.toString()
+            binding.tvScoreHistory.text = scanHistory.confidenceScore
             // Optionally set the image using an image loading library like Glide or Picasso
             binding.root.setOnClickListener {
                 onItemClicked(scanHistory)

@@ -147,11 +147,11 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         imageClassifierHelper.classifyStaticImage(uri)
     }
 
-    private fun moveToResult(uri: Uri, label: String, score: Float, description: String, tips: String) {
+    private fun moveToResult(uri: Uri, label: String, score: String, description: String, tips: String) {
         val action = ScanFragmentDirections.actionNavigationScanToNavigationResult()
         action.imageUri = uri.toString()
         action.resultLabel = label
-        action.resultScore = score.toString()
+        action.resultScore = score
         action.resultDescription = description
         action.resultTips = tips
 
@@ -188,6 +188,7 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         results?.let { result ->
             if (result.isNotEmpty()) {
                 val topResult = result[0]
+                val confidenceScore = "${(topResult.second * 100).toInt()}%"
                 val diseaseInfo = DiseaseData.diseaseDetails[topResult.first]
                 val description = diseaseInfo?.description ?: "No description available"
                 val tips = diseaseInfo?.tips ?: "No tips available"
@@ -198,19 +199,20 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 savedImageUri?.let {
                     val scanHistory = ScanHistory(
                         label = topResult.first,
-                        confidenceScore = topResult.second,
+                        confidenceScore = confidenceScore,
                         description = description,
                         tips = tips,
                         imageUri = it.toString()
                     )
 
                     viewModel.addScanHistory(scanHistory)
-                    moveToResult(it, topResult.first, topResult.second, description, tips)
+                    moveToResult(it, topResult.first, confidenceScore, description, tips)
                 } ?: run {
                     showToast("Failed to save image")
                 }
             }
         }
+
     }
 
 }

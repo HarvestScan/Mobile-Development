@@ -36,6 +36,12 @@ interface HarvestScanDao {
     @Query("SELECT * FROM history ORDER BY id DESC")
     fun getAllHistory(): LiveData<List<ScanHistory>>
 
-    @Query("SELECT * FROM history WHERE id = :scanId")
-    fun getScanHistoryById(scanId: Int): ScanHistory?
+    @Delete
+    suspend fun deleteHistory(scanHistory: ScanHistory)
+
+    @Query("DELETE FROM history WHERE id = :historyId")
+    suspend fun deleteHistoryById(historyId: Int)
+
+//    @Query("SELECT * FROM history WHERE id = :scanId")
+//    fun getScanHistoryById(scanId: Int): ScanHistory?
 }
