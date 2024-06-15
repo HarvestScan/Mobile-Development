@@ -100,13 +100,25 @@
             android:name="resultScore"
             app:argType="string"
             android:defaultValue="default score" />
+        <argument
+            android:name="resultDescription"
+            app:argType="string"
+            android:defaultValue="default description" />
+        <argument
+            android:name="resultTips"
+            app:argType="string"
+            android:defaultValue="default tips" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.dicoding.harvestscan.ui.scan.HistoryFragment"
-        android:label="@string/history"
-        tools:layout="@layout/fragment_history" />
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_navigation_history_to_navigation_result"
+            app:destination="@id/navigation_result" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_my_plant"
