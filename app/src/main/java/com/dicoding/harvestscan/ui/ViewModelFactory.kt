@@ -33,7 +33,7 @@ class ViewModelFactory(
                 HomeViewModel(repository) as T
             }
             modelClass.isAssignableFrom(ScanViewModel::class.java) -> {
-                ScanViewModel() as T
+                ScanViewModel(application) as T
             }
             modelClass.isAssignableFrom(MyPlantViewModel::class.java) -> {
                 MyPlantViewModel(application) as T
