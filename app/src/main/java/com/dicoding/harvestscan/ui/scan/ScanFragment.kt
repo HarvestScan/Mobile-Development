@@ -26,7 +26,8 @@ import com.dicoding.harvestscan.helper.ImageClassifierHelper
 import com.dicoding.harvestscan.data.local.DiseaseData
 import com.dicoding.harvestscan.data.local.room.ScanHistory
 import com.dicoding.harvestscan.ui.ViewModelFactory
-import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
+import java.io.File
+import java.io.FileOutputStream
 
 class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
 
@@ -112,11 +113,28 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     }
 
     private fun showImage() {
+//        currentImageUri?.let {
+//            Log.d("Image URI", "showImage: $it")
+//            binding.ivScanImage.setImageURI(it)
+//            binding.btnAnalyze.isVisible = true
+//            binding.tvInsertImage.text = getString(R.string.text_analyze)
+//        }
+
         currentImageUri?.let {
             Log.d("Image URI", "showImage: $it")
             binding.ivScanImage.setImageURI(it)
             binding.btnAnalyze.isVisible = true
             binding.tvInsertImage.text = getString(R.string.text_analyze)
+
+            // Simpan gambar ke penyimpanan internal aplikasi
+            val savedImageUri = saveImageToInternalStorage(it)
+
+            savedImageUri?.let { uri ->
+                // Lakukan sesuatu dengan URI yang sudah disimpan
+                Log.d("Saved Image URI", "Saved Image URI: $uri")
+            } ?: run {
+                showToast("Failed to save image")
+            }
         }
     }
 
@@ -144,6 +162,24 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun saveImageToInternalStorage(uri: Uri): Uri? {
+        val context = requireContext()
+        val inputStream = context.contentResolver.openInputStream(uri)
+
+        val currentTime = System.currentTimeMillis()
+        val fileName = "scanned_image_$currentTime.jpg" // Nama file dengan timestamp
+
+        val file = File(context.filesDir, fileName)
+
+        inputStream?.use { input ->
+            FileOutputStream(file).use { output ->
+                input.copyTo(output)
+            }
+        }
+
+        return if (file.exists()) Uri.fromFile(file) else null
+    }
+
     override fun onError(error: String) {
         showToast(error)
     }
@@ -157,16 +193,22 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 val tips = diseaseInfo?.tips ?: "No tips available"
                 Log.d("HasilScan", "${topResult.first}: ${topResult.second}")
 
-                val scanHistory = ScanHistory(
-                    label = topResult.first,
-                    confidenceScore = topResult.second,
-                    description = description,
-                    tips = tips,
-                    imageUri = currentImageUri.toString()
-                )
-                viewModel.addScanHistory(scanHistory)
+                val savedImageUri = saveImageToInternalStorage(currentImageUri!!)
 
-                moveToResult(currentImageUri!!, topResult.first, topResult.second, description, tips)
+                savedImageUri?.let {
+                    val scanHistory = ScanHistory(
+                        label = topResult.first,
+                        confidenceScore = topResult.second,
+                        description = description,
+                        tips = tips,
+                        imageUri = it.toString()
+                    )
+
+                    viewModel.addScanHistory(scanHistory)
+                    moveToResult(it, topResult.first, topResult.second, description, tips)
+                } ?: run {
+                    showToast("Failed to save image")
+                }
             }
         }
     }
