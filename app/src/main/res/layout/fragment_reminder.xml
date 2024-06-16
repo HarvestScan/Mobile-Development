@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Set Reminder"
+        android:text="@string/tittle_set_reminder"
         android:textColor="@color/teal_500"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pilih Tanaman:"
+        android:text="@string/choose_your_plant"
         android:layout_marginTop="10dp"
         android:textColor="@color/black" />
     <com.google.android.material.textfield.TextInputLayout
@@ -46,9 +46,11 @@
         <Spinner
             android:id="@+id/spinner_plant_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
+            android:layout_height="50dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_background" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input_reminder_time"
@@ -70,7 +72,7 @@
             android:id="@+id/edit_text_reminder_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Waktu Pengingat"
+            android:hint="@string/reminder_time"
             android:focusable="false"
             android:clickable="true"
             android:textColorHint="@color/black" />
@@ -81,7 +83,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pilih Hari Pengingat:"
+        android:text="@string/choose_reminder_day"
         android:layout_marginTop="20dp"
         android:textColor="@color/black" />
 
@@ -89,16 +91,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="2dp"
         android:columnCount="4"
-        android:rowCount="2"
-        android:layout_marginTop="2dp" >
+        android:rowCount="2">
 
         <!-- Checkbox untuk setiap hari -->
         <CheckBox
             android:id="@+id/checkbox_monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senin" />
+            android:text="@string/monday_reminder"
+            android:textSize="11sp" />
 
         <!-- Tambahkan Checkbox untuk setiap hari lainnya -->
         <!-- Selasa -->
@@ -106,42 +109,48 @@
             android:id="@+id/checkbox_tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selasa" />
+            android:text="@string/tuesday_reminder"
+            android:textSize="11sp" />
 
         <!-- Rabu -->
         <CheckBox
             android:id="@+id/checkbox_wednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rabu" />
+            android:text="@string/wednesday_reminder"
+            android:textSize="11sp" />
 
         <!-- Kamis -->
         <CheckBox
             android:id="@+id/checkbox_thursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kamis" />
+            android:text="@string/thursday_reminder"
+            android:textSize="11sp" />
 
         <!-- Jumat -->
         <CheckBox
             android:id="@+id/checkbox_friday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumat" />
+            android:text="@string/friday_reminder"
+            android:textSize="13sp" />
 
         <!-- Sabtu -->
         <CheckBox
             android:id="@+id/checkbox_saturday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sabtu" />
+            android:text="@string/saturday_reminder"
+            android:textSize="11sp" />
 
         <!-- Minggu -->
         <CheckBox
             android:id="@+id/checkbox_sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Minggu" />
+            android:text="@string/sunday_reminder"
+            android:textSize="11sp" />
     </GridLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -168,7 +177,7 @@
             android:id="@+id/edit_text_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Catatan"
+            android:hint="@string/remind_me_to_reminder"
             android:maxLength="70"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -178,7 +187,7 @@
         android:id="@+id/setReminderButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Turn On Reminder"
+        android:text="@string/turn_on_reminder_button"
         style="@style/Widget.Material3.Button.Icon"
         android:backgroundTint="@color/teal_500"
         android:gravity="center"

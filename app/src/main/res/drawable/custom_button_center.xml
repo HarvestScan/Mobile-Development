@@ -1,0 +1,5 @@
+<!-- res/drawable/custom_button_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/teal_500" /> <!-- Ganti dengan warna latar belakang tombol Anda -->
+    <corners android:radius="50dp" /> <!-- Ini akan membuat sudut tombol menjadi oval -->
+</shape>

@@ -92,10 +92,10 @@ class AddPlantFragment : Fragment() {
             val plant = Plant(name = name, type = type, botanicalName = botanicalName, imageUri = image)
             plantViewModel.insert(plant)
 
-            showCustomToast("Tanaman sudah ditambahkan")
+            showCustomToast("Plant has been added")
             findNavController().navigate(R.id.navigation_my_plant)
         } else {
-            showCustomToast("Semua input harus diisi")
+            showCustomToast("All inputs must be filled")
         }
     }
 
