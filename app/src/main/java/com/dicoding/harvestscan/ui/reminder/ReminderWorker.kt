@@ -14,7 +14,7 @@ class ReminderWorker(
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
     override suspend fun doWork(): Result {
-        val plantName = inputData.getString("plant_name")
+        val plantName = inputData.getString("plantName")
         val notes = inputData.getString("notes")
 
         showNotification(plantName, notes)
@@ -31,7 +31,7 @@ class ReminderWorker(
         }
 
         val notification = NotificationCompat.Builder(applicationContext, "REMINDER_CHANNEL")
-            .setSmallIcon(R.drawable.ic_notification)
+            .setSmallIcon(R.drawable.apk_logo)
             .setContentTitle("Reminder for Plant")
             .setContentText("Don't forget to take care of the plants $plantName with notes $notes")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

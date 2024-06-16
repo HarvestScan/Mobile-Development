@@ -1,7 +1,5 @@
-<!-- res/drawable/cursor_white.xml -->
+<!-- res/drawable/custom_cursor.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#000000" />
-    <size 
-        android:width="2dp"
-        android:height="2dp" />
+    <size android:width="1dp"/>
+    <solid android:color="@color/black"/>
 </shape>
