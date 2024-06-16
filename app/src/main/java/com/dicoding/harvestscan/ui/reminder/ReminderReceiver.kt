@@ -45,7 +45,7 @@ class ReminderReceiver : BroadcastReceiver() {
         )
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_notification)  // Update the icon to the correct resource
+            .setSmallIcon(R.drawable.apk_logo)  // Update the icon to the correct resource
             .setContentTitle("Reminder for Plant")
             .setContentText("Don't forget to take care of the plants $plantName with notes $notes")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

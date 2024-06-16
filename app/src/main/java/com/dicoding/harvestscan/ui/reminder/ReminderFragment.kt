@@ -156,9 +156,12 @@ class ReminderFragment : Fragment() {
     private fun setAlarm(reminder: Reminder) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
+        val selectedPlant = plantList.find { it.id == plantId }
+        val plantName = selectedPlant?.name
+
         reminder.daysOfWeek.split(", ").forEach { day ->
             val intent = Intent(context, ReminderReceiver::class.java).apply {
-                putExtra("plantName", reminder.plantId)
+                putExtra("plantName", plantName)
                 putExtra("notes", reminder.notes)
             }
 
@@ -199,6 +202,7 @@ class ReminderFragment : Fragment() {
             )
         }
     }
+
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
             setTitle("No plants yet!")
