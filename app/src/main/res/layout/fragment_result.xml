@@ -6,58 +6,113 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.scan.ResultFragment">
 
-
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_place_holder" />
 
     <TextView
         android:id="@+id/result_text"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="18dp"
-        android:textSize="18sp"
-        android:textColor="@color/black"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_image"
-        tools:text="@string/results_of_the_analysis" />
-    <TextView
-        android:id="@+id/result_desc"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="18dp"
-        android:textSize="18sp"
         android:textColor="@color/black"
-        android:fontFamily="@font/poppins_regular"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_text_title"
+        tools:text="@string/results_of_the_analysis" />
+
+    <TextView
+        android:id="@+id/result_tips_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Tips :"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_text"
-        tools:text="@string/analysis_results_description" />
+        app:layout_constraintTop_toBottomOf="@+id/result_desc" />
+
+    <TextView
+        android:id="@+id/result_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="RESULT"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_image" />
+
     <TextView
         android:id="@+id/result_tips"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="18dp"
-        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_tips_title"
+        tools:text="@string/tips"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginHorizontal="16dp" />
+
+
+    <TextView
+        android:id="@+id/result_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_desc_title"
+        tools:text="@string/analysis_results_description"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginHorizontal="16dp" />
+
+
+    <TextView
+        android:id="@+id/result_desc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Description of Analysis : "
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_desc"
-        tools:text="@string/tips" />
+        app:layout_constraintTop_toBottomOf="@+id/result_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

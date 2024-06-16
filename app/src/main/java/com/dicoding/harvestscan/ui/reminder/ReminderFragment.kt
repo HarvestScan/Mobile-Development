@@ -205,7 +205,7 @@ class ReminderFragment : Fragment() {
 
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
-            setTitle("No plants yet!")
+            setTitle("You still don't have any plants.")
             setMessage(message)
             setPositiveButton("Continue") { _, _ ->
                 findNavController().navigate(navigate)
