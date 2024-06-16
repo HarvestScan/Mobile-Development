@@ -1,6 +1,6 @@
 package com.dicoding.harvestscan.data.remote.retrofit
 
-import com.dicoding.harvestscan.data.remote.request.ForgotPasswordResquest
+import com.dicoding.harvestscan.data.remote.request.ForgotPasswordRequest
 import com.dicoding.harvestscan.data.remote.request.LoginRequest
 import com.dicoding.harvestscan.data.remote.request.RegisterRequest
 import com.dicoding.harvestscan.data.remote.response.ForgotPasswordResponse
@@ -22,6 +22,6 @@ interface ApiService {
 
     @POST("reset-password")
     suspend fun forgotPassword(
-        @Body request: ForgotPasswordResquest
+        @Body request: ForgotPasswordRequest
     ): ForgotPasswordResponse
 }

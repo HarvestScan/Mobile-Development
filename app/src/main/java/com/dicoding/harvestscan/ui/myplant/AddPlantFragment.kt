@@ -92,10 +92,10 @@ class AddPlantFragment : Fragment() {
             val plant = Plant(name = name, type = type, botanicalName = botanicalName, imageUri = image)
             plantViewModel.insert(plant)
 
-            showCustomToast("Plant has been added")
+            showCustomToast(getString(R.string.plant_has_been_added))
             findNavController().navigate(R.id.navigation_my_plant)
         } else {
-            showCustomToast("All inputs must be filled")
+            showCustomToast(getString(R.string.all_inputs_must_be_filled))
         }
     }
 
@@ -103,7 +103,6 @@ class AddPlantFragment : Fragment() {
         val toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
         val view = toast.view
 
-        // Ubah warna teks di dalam toast
         val text = view?.findViewById<TextView>(android.R.id.message)
         text?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
 

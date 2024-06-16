@@ -1,5 +1,5 @@
 package com.dicoding.harvestscan.data.remote.request
 
-data class ForgotPasswordResquest(
+data class ForgotPasswordRequest(
     val email: String
 )

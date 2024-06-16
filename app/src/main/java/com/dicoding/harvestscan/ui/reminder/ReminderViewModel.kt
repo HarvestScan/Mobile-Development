@@ -23,10 +23,6 @@ class ReminderViewModel (application: Application) : ViewModel() {
         }
     }
 
-    fun getPlantById(plantId: Int): LiveData<Plant> {
-        return repository.getPlantById(plantId)
-    }
-
     fun getAllPlants(): LiveData<List<Plant>> {
         return repository.getAllPlants()
     }

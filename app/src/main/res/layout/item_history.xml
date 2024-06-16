@@ -4,6 +4,7 @@
     android:layout_height="94dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/outline_bg"
+    android:layout_marginTop="8dp"
     android:padding="7dp">
     <ImageView
         android:id="@+id/image_history_scan"

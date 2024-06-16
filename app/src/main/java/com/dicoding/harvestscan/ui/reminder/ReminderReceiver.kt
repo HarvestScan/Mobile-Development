@@ -14,22 +14,22 @@ import com.dicoding.harvestscan.R
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val plantName = intent.getStringExtra("plantName")
-        val notes = intent.getStringExtra("notes")
+        val plantName = intent.getStringExtra(context.getString(R.string.plantname))
+        val notes = intent.getStringExtra(context.getString(R.string.notes))
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val notificationId = System.currentTimeMillis().toInt()
-        val channelId = "reminder_channel"
+        val channelId = context.getString(R.string.reminder_channel_id)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Reminder Channel",
+                context.getString(R.string.reminder_channel),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Channel for reminder notifications"
+                description = context.getString(R.string.channel_for_reminder_notifications)
                 enableLights(true)
                 lightColor = Color.RED
             }
@@ -46,8 +46,13 @@ class ReminderReceiver : BroadcastReceiver() {
 
         val notification = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.apk_logo)  // Update the icon to the correct resource
-            .setContentTitle("Reminder for Plant")
-            .setContentText("Don't forget to take care of the plants $plantName with notes $notes")
+            .setContentTitle(context.getString(R.string.reminder_for_plant))
+            .setContentText(
+                context.getString(
+                    R.string.don_t_forget_to_take_care_of_the_plants_with_notes,
+                    plantName,
+                    notes
+                ))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

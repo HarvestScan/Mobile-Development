@@ -50,21 +50,21 @@ class PlantAdapter(
         }
 
         private fun showDeleteDialog(plant: Plant) {
-            val alertDialog = AlertDialog.Builder(itemView.context)
-                .setMessage("Are you sure you want to delete this plant?")
-                .setPositiveButton("Yes") { dialog, which ->
+            val context = itemView.context
+            val alertDialog = AlertDialog.Builder(context)
+                .setMessage(context.getString(R.string.are_you_sure_you_want_to_delete_this_plant))
+                .setPositiveButton(context.getString(R.string.yes)) { dialog, which ->
                     onDeletePlantClick(plant)
-                    Toast.makeText(itemView.context, "Plant deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(itemView.context,
+                        context.getString(R.string.plant_deleted), Toast.LENGTH_SHORT).show()
                 }
-                .setNegativeButton("No", null)
+                .setNegativeButton(context.getString(R.string.no), null)
                 .create()
 
             alertDialog.setOnShowListener {
-                // Change message text color
                 val messageTextView = alertDialog.findViewById<TextView>(android.R.id.message)
                 messageTextView?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
 
-                // Change button text color
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
             }
