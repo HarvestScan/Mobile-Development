@@ -50,8 +50,8 @@ class ReminderFragment : Fragment() {
         checkPlantCountAndRedirect()
 
         // Retrieve arguments using Safe Args
-        val args = ReminderFragmentArgs.fromBundle(requireArguments())
-        plantId = args.plantId
+//        val args = ReminderFragmentArgs.fromBundle(requireArguments())
+//        plantId = args.plantId
 
         // Initialize UI components
         plantSpinner = binding.spinnerPlantName
@@ -88,7 +88,7 @@ class ReminderFragment : Fragment() {
         viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
             if (plants.isEmpty()) {
                 // Tidak ada tanaman, alihkan ke halaman My Plant
-                showAlertDialog("Tambahkan tanaman terlebih dahulu.", R.id.action_navigation_reminder_to_navigation_my_plant)
+                showAlertDialog("Please add a plant first.", R.id.action_navigation_reminder_to_navigation_my_plant)
             }
         }
     }
@@ -122,7 +122,7 @@ class ReminderFragment : Fragment() {
         val daysOfWeek = getSelectedDays()
 
         if (plantId == -1 || reminderTime.isEmpty() || daysOfWeek.isEmpty()) {
-            Toast.makeText(requireContext(), "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "All fields must be filled!", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -136,19 +136,19 @@ class ReminderFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.insertReminder(reminder)
             setAlarm(reminder) // Set the alarm after saving the reminder
-            Toast.makeText(requireContext(), "Pengingat berhasil disimpan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Reminder successfully saved!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun getSelectedDays(): String {
         val days = mutableListOf<String>()
-        if (binding.checkboxMonday.isChecked) days.add("Senin")
-        if (binding.checkboxTuesday.isChecked) days.add("Selasa")
-        if (binding.checkboxWednesday.isChecked) days.add("Rabu")
-        if (binding.checkboxThursday.isChecked) days.add("Kamis")
-        if (binding.checkboxFriday.isChecked) days.add("Jumat")
-        if (binding.checkboxSaturday.isChecked) days.add("Sabtu")
-        if (binding.checkboxSunday.isChecked) days.add("Minggu")
+        if (binding.checkboxMonday.isChecked) days.add("Monday")
+        if (binding.checkboxTuesday.isChecked) days.add("Tuesday")
+        if (binding.checkboxWednesday.isChecked) days.add("Wednesday")
+        if (binding.checkboxThursday.isChecked) days.add("Thursday")
+        if (binding.checkboxFriday.isChecked) days.add("Friday")
+        if (binding.checkboxSaturday.isChecked) days.add("Saturday")
+        if (binding.checkboxSunday.isChecked) days.add("Sunday")
 
         return days.joinToString(", ")
     }
@@ -176,13 +176,13 @@ class ReminderFragment : Fragment() {
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)
                 set(Calendar.DAY_OF_WEEK, when (day) {
-                    "Senin" -> Calendar.MONDAY
-                    "Selasa" -> Calendar.TUESDAY
-                    "Rabu" -> Calendar.WEDNESDAY
-                    "Kamis" -> Calendar.THURSDAY
-                    "Jumat" -> Calendar.FRIDAY
-                    "Sabtu" -> Calendar.SATURDAY
-                    "Minggu" -> Calendar.SUNDAY
+                    "Monday" -> Calendar.MONDAY
+                    "Tuesday" -> Calendar.TUESDAY
+                    "Wednesday" -> Calendar.WEDNESDAY
+                    "Thursday" -> Calendar.THURSDAY
+                    "Friday" -> Calendar.FRIDAY
+                    "Saturday" -> Calendar.SATURDAY
+                    "Sunday" -> Calendar.SUNDAY
                     else -> throw IllegalArgumentException("Invalid day")
                 })
             }
@@ -201,7 +201,7 @@ class ReminderFragment : Fragment() {
     }
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
-            setTitle("Belum ada tanaman!")
+            setTitle("No plants yet!")
             setMessage(message)
             setPositiveButton("Continue") { _, _ ->
                 findNavController().navigate(navigate)

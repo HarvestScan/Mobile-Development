@@ -11,6 +11,7 @@
         android:id="@+id/plantImage"
         android:layout_width="354dp"
         android:layout_height="324dp"
+        android:contentDescription="@string/plant_image_item_plant"
         android:layout_gravity="center_vertical"
         android:scaleType="centerCrop" />
 
@@ -32,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type Plant : "
+            android:text="@string/type_plant_item_plant"
             android:textSize="14sp"
             android:textColor="@android:color/black" />
 
@@ -54,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Botanical Name : "
+            android:text="@string/botanical_name_item_plant"
             android:textSize="14sp"
             android:textColor="@android:color/black" />
 
@@ -87,10 +88,10 @@
         android:id="@+id/addReminderButton"
         style="@style/Widget.Material3.Button.Icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/teal_500"
-        android:text="Add Reminder"
+        android:text="@string/add_reminder_item_plant"
         android:textSize="15sp"
         app:icon="@drawable/baseline_more_time_24" />
 </LinearLayout>

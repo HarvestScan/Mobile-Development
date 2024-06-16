@@ -43,7 +43,7 @@
         android:id="@+id/nav_host_fragment_main"
         android:layout_width="74dp"
         android:layout_height="3dp"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="50dp"
         android:background="@drawable/indicator_bg"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintStart_toStartOf="parent"

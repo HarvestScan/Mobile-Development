@@ -32,8 +32,8 @@ class ReminderWorker(
 
         val notification = NotificationCompat.Builder(applicationContext, "REMINDER_CHANNEL")
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Pengingat Tanaman")
-            .setContentText("Ingat untuk merawat tanaman: $plantName. $notes")
+            .setContentTitle("Reminder for Plant")
+            .setContentText("Don't forget to take care of the plants $plantName with notes $notes")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
 

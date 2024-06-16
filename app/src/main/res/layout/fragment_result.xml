@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.scan.ResultFragment">
 
+
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="300dp"
@@ -23,11 +24,13 @@
         android:layout_margin="16dp"
         android:layout_marginTop="18dp"
         android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_semi_bold"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_image"
-        tools:text="hasil Analisis" />
+        tools:text="@string/results_of_the_analysis" />
     <TextView
         android:id="@+id/result_desc"
         android:layout_width="300dp"
@@ -35,11 +38,13 @@
         android:layout_margin="16dp"
         android:layout_marginTop="18dp"
         android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_text"
-        tools:text="hasil Analisis desc" />
+        tools:text="@string/analysis_results_description" />
     <TextView
         android:id="@+id/result_tips"
         android:layout_width="300dp"
@@ -47,10 +52,12 @@
         android:layout_margin="16dp"
         android:layout_marginTop="18dp"
         android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_desc"
-        tools:text="hasil Analisis tips" />
+        tools:text="@string/tips" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

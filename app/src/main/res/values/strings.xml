@@ -14,7 +14,7 @@
     <string name="logout">Logout</string>
     <string name="about_card">About Harvest Scan</string>
     <string name="harvest_scan_logo">harvest scan logo</string>
-    <string name="welcome_message">Welcome user</string>
+    <string name="welcome_message">Welcome to Harvest Scan</string>
     <string name="add_reminder">+ Add Reminder</string>
     <string name="add_plant">+ Add Plant</string>
     <string name="title_page_myplants">My Plants</string>
@@ -61,4 +61,26 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="forgot_password_description">Enter your email to receive a reset password</string>
     <string name="btn_submit">Submit</string>
+    <string name="results_of_the_analysis">Results of the Analysis</string>
+    <string name="analysis_results_description">Analysis Results Description</string>
+    <string name="tips">Tips</string>
+    <string name="image_leaf_item_history">image_leaf</string>
+    <string name="delete_button_item_history">delete_button</string>
+    <string name="type_plant_item_plant">Type Plant :</string>
+    <string name="botanical_name_item_plant">Botanical Name :</string>
+    <string name="add_reminder_item_plant">Add Reminder</string>
+    <string name="plant_image_item_plant">Plant Image Item Plant</string>
+    <string name="choose_your_plant">Choose your plant :</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="choose_reminder_day">Choose Reminder Day :</string>
+    <string name="monday_reminder">Monday</string>
+    <string name="tuesday_reminder">Tuesday</string>
+    <string name="wednesday_reminder">Wednesday</string>
+    <string name="thursday_reminder">Thursday</string>
+    <string name="friday_reminder">Friday</string>
+    <string name="saturday_reminder">Saturday</string>
+    <string name="sunday_reminder">Sunday</string>
+    <string name="remind_me_to_reminder">Remind me to...</string>
+    <string name="turn_on_reminder_button">Turn On Reminder</string>
+    <string name="tittle_set_reminder">Set Reminder</string>
 </resources>
