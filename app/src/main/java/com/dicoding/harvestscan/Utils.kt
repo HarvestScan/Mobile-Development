@@ -17,7 +17,6 @@ private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
 fun getImageUri(context: Context): Uri {
-    val FILENAME_FORMAT = context.getString(R.string.filename_format)
     var uri: Uri? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val contentValues = ContentValues().apply {
