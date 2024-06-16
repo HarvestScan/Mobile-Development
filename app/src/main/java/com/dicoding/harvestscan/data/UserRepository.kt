@@ -1,13 +1,15 @@
 package com.dicoding.harvestscan.data
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.pref.UserModel
 import com.dicoding.harvestscan.data.pref.UserPreference
 import com.dicoding.harvestscan.data.remote.response.RegisterResponse
 import com.dicoding.harvestscan.data.remote.retrofit.ApiService
 import com.dicoding.harvestscan.data.remote.Result
-import com.dicoding.harvestscan.data.remote.request.ForgotPasswordResquest
+import com.dicoding.harvestscan.data.remote.request.ForgotPasswordRequest
 import com.dicoding.harvestscan.data.remote.request.LoginRequest
 import com.dicoding.harvestscan.data.remote.request.RegisterRequest
 import com.dicoding.harvestscan.data.remote.response.ErrorResponse
@@ -21,6 +23,7 @@ import retrofit2.HttpException
 class UserRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference,
+    private val context: Context
 ) {
 
     suspend fun saveSession(user: User) {
@@ -42,7 +45,7 @@ class UserRepository private constructor(
             val response = apiService.userRegister(request)
             emit(Result.Success(response))
         } catch (e: HttpException) {
-            emit(handleHttpException(e))
+            emit(Result.Error(context.getString(R.string.email_already_in_use)))
         }
     }
 
@@ -53,15 +56,13 @@ class UserRepository private constructor(
             val response = apiService.userLogin(request)
             emit(Result.Success(response))
         } catch (e: HttpException) {
-            emit(handleHttpException(e))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message ?: "Unknown error"))
+            emit(Result.Error(context.getString(R.string.invalid_email_or_password)))
         }
     }
     fun forgotPassword(email: String): LiveData<Result<ForgotPasswordResponse>> = liveData {
         emit(Result.Loading)
         try {
-            val request = ForgotPasswordResquest(email)
+            val request = ForgotPasswordRequest(email)
             val response = apiService.forgotPassword(request)
             emit(Result.Success(response))
         } catch (e: HttpException) {
@@ -82,10 +83,10 @@ class UserRepository private constructor(
         private var instance: UserRepository? = null
         fun getInstance(
             apiService: ApiService,
-            userPreference: UserPreference
+            userPreference: UserPreference, context: Context
         ): UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(apiService, userPreference)
+                instance ?: UserRepository(apiService, userPreference, context)
             }.also { instance = it }
     }
 }

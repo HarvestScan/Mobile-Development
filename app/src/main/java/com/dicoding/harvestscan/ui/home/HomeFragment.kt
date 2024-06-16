@@ -92,8 +92,8 @@ class HomeFragment : Fragment() {
         val aboutCardView = binding.about
         aboutCardView.setBackgroundResource(R.drawable.gradient_animation)
         val animationDrawable = aboutCardView.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(1000)  // Durasi fade-in lebih cepat
-        animationDrawable.setExitFadeDuration(1000)   // Durasi fade-out lebih cepat
+        animationDrawable.setEnterFadeDuration(1000)
+        animationDrawable.setExitFadeDuration(1000)
         animationDrawable.start()
     }
 

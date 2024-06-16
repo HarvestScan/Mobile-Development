@@ -36,7 +36,6 @@ class MyPlantFragment : Fragment() {
 
         setupRecyclerView()
 
-        // Setup Add Plant button
         binding.btnAddPlant.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_my_plant_to_navigation_add_plant)
         }
@@ -57,14 +56,12 @@ class MyPlantFragment : Fragment() {
             adapter = plantAdapter
         }
 
-        // Observe the plant data
         plantViewModel.allPlants.observe(viewLifecycleOwner) { plants ->
             plants?.let { plantAdapter.submitList(it) }
         }
     }
 
     private fun navigateToAddReminder(plant: Plant) {
-        // Navigating to ReminderFragment from MyPlantFragment
         val action = MyPlantFragmentDirections.actionNavigationMyPlantToNavigationReminder()
         action.plantId = plant.id
         findNavController().navigate(action)

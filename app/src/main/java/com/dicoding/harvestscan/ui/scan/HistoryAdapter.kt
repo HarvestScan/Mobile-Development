@@ -35,7 +35,6 @@ class HistoryAdapter(
             binding.imageHistoryScan.setImageURI(Uri.parse(scanHistory.imageUri))
             binding.tvLabelHistory.text = scanHistory.label
             binding.tvScoreHistory.text = scanHistory.confidenceScore
-            // Optionally set the image using an image loading library like Glide or Picasso
             binding.root.setOnClickListener {
                 onItemClicked(scanHistory)
             }

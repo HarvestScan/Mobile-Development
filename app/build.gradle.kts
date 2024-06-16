@@ -73,10 +73,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+    implementation (libs.androidx.work.runtime.ktx)
 
-    implementation ("com.google.dagger:hilt-android:2.28-alpha")
-    kapt ("com.google.dagger:hilt-android-compiler:2.28-alpha")
-    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-    kapt ("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.android.compiler)
+    implementation (libs.androidx.hilt.lifecycle.viewmodel)
+    kapt (libs.androidx.hilt.compiler)
 }

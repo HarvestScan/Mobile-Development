@@ -7,7 +7,6 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-// Plant entity
 @Entity(tableName = "plants")
 data class Plant(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
@@ -17,7 +16,6 @@ data class Plant(
     val imageUri: String
 )
 
-// Reminder entity with foreign key reference to Plant
 @Entity(
     tableName = "reminders",
     foreignKeys = [ForeignKey(
@@ -36,7 +34,6 @@ data class Reminder(
     val notes: String
 )
 
-// Data class for the relationship between Plant and Reminder
 data class PlantWithReminders(
     @Embedded val plant: Plant,
     @Relation(

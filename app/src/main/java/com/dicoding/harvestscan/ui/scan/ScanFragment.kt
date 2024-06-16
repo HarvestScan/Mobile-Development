@@ -2,7 +2,6 @@ package com.dicoding.harvestscan.ui.scan
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -70,11 +69,10 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCamera() }
         binding.btnAnalyze.setOnClickListener {
-            Log.d("ButtonAnalyze", "Tombol analyze diklik!")
             currentImageUri?.let {
                 analyzeImage(it)
             } ?: run {
-                showToast("Masukkan gambar terlebih dahulu")
+                showToast(getString(R.string.no_media_selected))
             }
         }
     }
@@ -113,25 +111,14 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     }
 
     private fun showImage() {
-//        currentImageUri?.let {
-//            Log.d("Image URI", "showImage: $it")
-//            binding.ivScanImage.setImageURI(it)
-//            binding.btnAnalyze.isVisible = true
-//            binding.tvInsertImage.text = getString(R.string.text_analyze)
-//        }
-
         currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
             binding.ivScanImage.setImageURI(it)
             binding.btnAnalyze.isVisible = true
             binding.tvInsertImage.text = getString(R.string.text_analyze)
 
-            // Simpan gambar ke penyimpanan internal aplikasi
             val savedImageUri = saveImageToInternalStorage(it)
 
-            savedImageUri?.let { uri ->
-                // Lakukan sesuatu dengan URI yang sudah disimpan
-                Log.d("Saved Image URI", "Saved Image URI: $uri")
+            savedImageUri?.let { _ ->
             } ?: run {
                 showToast("Failed to save image")
             }
@@ -167,7 +154,7 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         val inputStream = context.contentResolver.openInputStream(uri)
 
         val currentTime = System.currentTimeMillis()
-        val fileName = "scanned_image_$currentTime.jpg" // Nama file dengan timestamp
+        val fileName = "scanned_image_$currentTime.jpg"
 
         val file = File(context.filesDir, fileName)
 
@@ -190,9 +177,8 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 val topResult = result[0]
                 val confidenceScore = "${(topResult.second * 100).toInt()}%"
                 val diseaseInfo = DiseaseData.diseaseDetails[topResult.first]
-                val description = diseaseInfo?.description ?: "No description available"
-                val tips = diseaseInfo?.tips ?: "No tips available"
-                Log.d("HasilScan", "${topResult.first}: ${topResult.second}")
+                val description = diseaseInfo?.description ?: getString(R.string.no_description_available)
+                val tips = diseaseInfo?.tips ?: getString(R.string.no_tips_available)
 
                 val savedImageUri = saveImageToInternalStorage(currentImageUri!!)
 
@@ -208,7 +194,7 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                     viewModel.addScanHistory(scanHistory)
                     moveToResult(it, topResult.first, confidenceScore, description, tips)
                 } ?: run {
-                    showToast("Failed to save image")
+                    showToast(getString(R.string.failed_to_save_image))
                 }
             }
         }

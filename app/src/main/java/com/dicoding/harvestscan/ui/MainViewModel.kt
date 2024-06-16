@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel: ViewModel() {
+    private val _navigateToHome = MutableLiveData<Boolean>()
+    val navigateToHome: LiveData<Boolean> get() = _navigateToHome
+
     private val _navigateToScan = MutableLiveData<Boolean>()
     val navigateToScan: LiveData<Boolean> get() = _navigateToScan
 
@@ -16,6 +19,14 @@ class MainViewModel: ViewModel() {
 
     private val _navigateToAddReminder = MutableLiveData<Boolean>()
     val navigateToAddReminder: LiveData<Boolean> get() = _navigateToAddReminder
+
+    fun onHomeButtonClicked() {
+        _navigateToHome.value = true
+    }
+
+    fun onNavigatedToHome() {
+        _navigateToHome.value = false
+    }
 
     fun onScanButtonClicked() {
         _navigateToScan.value = true

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Harvest Scan</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_scan">Pindai</string>
+    <string name="title_my_plant">Tanaman Saya</string>
+    <string name="title_result">Hasil</string>
+    <string name="insert_image">Silakan Masukkan Gambar Tanaman</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="no_media_selected">Tidak ada media yang dipilih</string>
+    <string name="analyze">Analisis</string>
+    <string name="text_analyze">Klik "Analisis" untuk mengidentifikasi penyakit.</string>
+    <string name="logout">Keluar</string>
+    <string name="about_card">Tentang Harvest Scan</string>
+    <string name="harvest_scan_logo">logo harvest scan</string>
+    <string name="welcome_message">Selamat Datang di Harvest Scan</string>
+    <string name="add_reminder">+ Tambah Pengingat</string>
+    <string name="add_plant">+ Tambah Tanaman</string>
+    <string name="history">Riwayat</string>
+    <string name="about_harvest_scan">\n\nHarvest Scan adalah aplikasi seluler dengan fitur utama memindai daun tanaman untuk mengidentifikasi penyakit dan memberikan opsi perawatan. \n\nCukup klik menu pindai, ambil gambar langsung melalui aplikasi kamera, atau pilih foto yang sudah ada dari galeri Anda. Setelah Anda memilih gambar Anda, tekan tombol "analisis" untuk membiarkan Harvest Scan mengidentifikasi penyakit tanaman dan memberikan rekomendasi perawatan. \n\nHarvest Scan juga memungkinkan Anda membuat daftar tanaman pribadi dan mengatur pengingat untuk memastikan tanaman kesayangan Anda tumbuh subur. \n\nPindai Tanaman Anda Untuk Menyelamatkan Tanaman Anda!</string>
+    <string name="text_add_plant">Tambah Tanaman</string>
+    <string name="desk_add_plant">Tambahkan Foto Tanaman (opsional):</string>
+    <string name="hint_name_plant">Masukkan nama tanaman</string>
+    <string name="hint_type_plant">Masukkan jenis tanaman</string>
+    <string name="hint_botanical_plant">Masukkan nama botani</string>
+    <string name="desc_image_plant">gambar_tanaman</string>
+    <string name="save_add_plant">SIMPAN</string>
+    <string name="green_logo">Logo Hijau</string>
+    <string name="white_logo">logo_putih</string>
+    <string name="title_login_page">Masuk ke akun Anda</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="title_signup_page">"Buat akun Anda"</string>
+    <string name="name">Nama</string>
+    <string name="register">Daftar</string>
+    <string name="dont_have_an_account">Belum punya akun? <b>Daftar</b></string>
+    <string name="signup_success_message">Pengguna berhasil dibuat!</string>
+    <string name="login_success_message">Login Berhasil</string>
+    <string name="logout_alert_message">Apakah Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="image_classifier_failed">Pengklasifikasi gambar gagal diinisialisasi. Lihat log kesalahan untuk detailnya</string>
+    <string name="result_string" translatable="false">%s : %s</string>
+    <string name="helper_text">Maksimum karakter</string>
+    <string name="delete_plant">hapus_konten</string>
+    <string name="forgot_password">Lupa Kata Sandi</string>
+    <string name="forgot_password_description">Masukkan email Anda untuk menerima reset kata sandi</string>
+    <string name="btn_submit">Kirim</string>
+    <string name="results_of_the_analysis">Hasil Analisis</string>
+    <string name="analysis_results_description">Deskripsi Hasil Analisis</string>
+    <string name="tips">Tips</string>
+    <string name="image_leaf_item_history">gambar_daun</string>
+    <string name="delete_button_item_history">tombol_hapus</string>
+    <string name="type_plant_item_plant">Jenis Tanaman :</string>
+    <string name="botanical_name_item_plant">Nama Botani :</string>
+    <string name="add_reminder_item_plant">Tambahkan Pengingat</string>
+    <string name="plant_image_item_plant">Gambar Tanaman Item Tanaman</string>
+    <string name="choose_your_plant">Pilih tanaman Anda :</string>
+    <string name="reminder_time">Waktu Pengingat</string>
+    <string name="choose_reminder_day">Pilih Hari Pengingat :</string>
+    <string name="remind_me_to_reminder">Ingatkan saya untuk...</string>
+    <string name="turn_on_reminder_button">Aktifkan Pengingat</string>
+    <string name="tittle_set_reminder">Setel Pengingat</string>
+    <string name="email_already_in_use">Email sudah digunakan</string>
+    <string name="invalid_email_or_password">Email atau kata sandi tidak valid</string>
+    <string name="plant_has_been_added">Tanaman telah ditambahkan</string>
+    <string name="all_inputs_must_be_filled">Semua input harus diisi</string>
+    <string name="are_you_sure_you_want_to_delete_this_plant">Apakah Anda yakin ingin menghapus tanaman ini?</string>
+    <string name="plant_deleted">Tanaman dihapus</string>
+    <string name="please_add_a_plant_first">Silakan tambahkan tanaman terlebih dahulu.</string>
+    <string name="_02d_02d" translatable="false">%02d:%02d</string>
+    <string name="all_fields_must_be_filled">Semua bidang harus diisi!</string>
+    <string name="reminder_successfully_saved">Pengingat berhasil disimpan!</string>
+    <string name="monday">Senin</string>
+    <string name="tuesday">Selasa</string>
+    <string name="wednesday">Rabu</string>
+    <string name="thursday">Kamis</string>
+    <string name="friday">Jumat</string>
+    <string name="saturday">Sabtu</string>
+    <string name="sunday">Minggu</string>
+    <string name="plantname">Nama Tanaman</string>
+    <string name="notes">Catatan</string>
+    <string name="invalid_day">Hari tidak valid</string>
+    <string name="you_still_don_t_have_any_plants">Anda masih belum memiliki tanaman.</string>
+    <string name="tvcontinue">Lanjutkan</string>
+    <string name="reminder_channel_id" translatable="false">reminder_channel</string>
+    <string name="reminder_channel" translatable="false">Reminder Channel</string>
+    <string name="channel_for_reminder_notifications">Saluran untuk notifikasi pengingat</string>
+    <string name="reminder_for_plant">Pengingat untuk Tanaman</string>
+    <string name="don_t_forget_to_take_care_of_the_plants_with_notes">Jangan lupa merawat tanaman %1$s dengan catatan %2$s</string>
+    <string name="reminder_channel_uppercase" translatable="false">REMINDER_CHANNEL</string>
+    <string name="reminder">Pengingat</string>
+    <string name="no_description_available">Tidak ada deskripsi tersedia</string>
+    <string name="no_tips_available">Tidak ada tips tersedia</string>
+    <string name="failed_to_save_image">Gagal menyimpan gambar</string>
+    <string name="yeay">Yeay!</string>
+    <string name="unknown_viewmodel_class">"Kelas ViewModel tidak dikenal: "</string>
+    <string name="filename_format" translatable="false">yyyyMMdd_HHmmss</string>
+    <string name="image_jpeg" translatable="false">image/jpeg</string>
+    <string name="pictures_mycamera" translatable="false">Pictures/MyCamera/</string>
+    <string name="display_name" translatable="false">%1$s.jpg</string>
+    <string name="image_file" translatable="false">/MyCamera/%1$s.jpg</string>
+    <string name="result_image" translatable="false">Result_image</string>
+    <string name="description_of_analysis_title">Deskripsi Analisis :</string>
+    <string name="result_uppercase">HASIL</string>
+    <string name="tips_title">Tips :</string>
+</resources>

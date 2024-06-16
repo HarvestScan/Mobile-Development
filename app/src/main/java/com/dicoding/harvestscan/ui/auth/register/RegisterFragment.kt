@@ -3,7 +3,6 @@ package com.dicoding.harvestscan.ui.auth.register
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -53,7 +52,6 @@ class RegisterFragment : Fragment() {
                     }
                     is Result.Error -> {
                         showLoading(false)
-                        handleError(result.error)
                     }
                 }
             }
@@ -73,15 +71,6 @@ class RegisterFragment : Fragment() {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             viewModel.registerUser(email, password)
-        }
-    }
-
-    private fun handleError(error: String) {
-        if (error.contains("Firebase: Error (auth/email-already-in-use).")) {
-            showToast(getString(R.string.signup_failed_email_in_use))
-        } else {
-            showToast(error)
-            Log.d("RegisterUser", error)
         }
     }
 

@@ -49,14 +49,8 @@ class ReminderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checkPlantCountAndRedirect()
 
-        // Retrieve arguments using Safe Args
-//        val args = ReminderFragmentArgs.fromBundle(requireArguments())
-//        plantId = args.plantId
-
-        // Initialize UI components
         plantSpinner = binding.spinnerPlantName
 
-        // Observe plant list from ViewModel
         viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
             plantList = plants
             val plantNames = plants.map { it.name }
@@ -64,7 +58,6 @@ class ReminderFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             plantSpinner.adapter = adapter
 
-            // Select the appropriate plant in the spinner if plantId is provided
             if (plantId != -1) {
                 val selectedPlant = plants.find { it.id == plantId }
                 selectedPlant?.let { plant ->
@@ -87,8 +80,7 @@ class ReminderFragment : Fragment() {
     private fun checkPlantCountAndRedirect() {
         viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
             if (plants.isEmpty()) {
-                // Tidak ada tanaman, alihkan ke halaman My Plant
-                showAlertDialog("Please add a plant first.", R.id.action_navigation_reminder_to_navigation_my_plant)
+                showAlertDialog(getString(R.string.please_add_a_plant_first), R.id.action_navigation_reminder_to_navigation_my_plant)
             }
         }
     }
@@ -101,7 +93,7 @@ class ReminderFragment : Fragment() {
         val timePickerDialog = TimePickerDialog(
             requireContext(),
             { _, selectedHour, selectedMinute ->
-                editText.setText(String.format("%02d:%02d", selectedHour, selectedMinute))
+                editText.setText(String.format(getString(R.string._02d_02d), selectedHour, selectedMinute))
             },
             hour,
             minute,
@@ -122,7 +114,8 @@ class ReminderFragment : Fragment() {
         val daysOfWeek = getSelectedDays()
 
         if (plantId == -1 || reminderTime.isEmpty() || daysOfWeek.isEmpty()) {
-            Toast.makeText(requireContext(), "All fields must be filled!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.all_fields_must_be_filled), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -136,19 +129,20 @@ class ReminderFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.insertReminder(reminder)
             setAlarm(reminder) // Set the alarm after saving the reminder
-            Toast.makeText(requireContext(), "Reminder successfully saved!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.reminder_successfully_saved), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun getSelectedDays(): String {
         val days = mutableListOf<String>()
-        if (binding.checkboxMonday.isChecked) days.add("Monday")
-        if (binding.checkboxTuesday.isChecked) days.add("Tuesday")
-        if (binding.checkboxWednesday.isChecked) days.add("Wednesday")
-        if (binding.checkboxThursday.isChecked) days.add("Thursday")
-        if (binding.checkboxFriday.isChecked) days.add("Friday")
-        if (binding.checkboxSaturday.isChecked) days.add("Saturday")
-        if (binding.checkboxSunday.isChecked) days.add("Sunday")
+        if (binding.checkboxMonday.isChecked) days.add(getString(R.string.monday))
+        if (binding.checkboxTuesday.isChecked) days.add(getString(R.string.tuesday))
+        if (binding.checkboxWednesday.isChecked) days.add(getString(R.string.wednesday))
+        if (binding.checkboxThursday.isChecked) days.add(getString(R.string.thursday))
+        if (binding.checkboxFriday.isChecked) days.add(getString(R.string.friday))
+        if (binding.checkboxSaturday.isChecked) days.add(getString(R.string.saturday))
+        if (binding.checkboxSunday.isChecked) days.add(getString(R.string.sunday))
 
         return days.joinToString(", ")
     }
@@ -161,8 +155,8 @@ class ReminderFragment : Fragment() {
 
         reminder.daysOfWeek.split(", ").forEach { day ->
             val intent = Intent(context, ReminderReceiver::class.java).apply {
-                putExtra("plantName", plantName)
-                putExtra("notes", reminder.notes)
+                putExtra(getString(R.string.plantname), plantName)
+                putExtra(getString(R.string.notes), reminder.notes)
             }
 
             val pendingIntent = PendingIntent.getBroadcast(
@@ -179,14 +173,14 @@ class ReminderFragment : Fragment() {
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)
                 set(Calendar.DAY_OF_WEEK, when (day) {
-                    "Monday" -> Calendar.MONDAY
-                    "Tuesday" -> Calendar.TUESDAY
-                    "Wednesday" -> Calendar.WEDNESDAY
-                    "Thursday" -> Calendar.THURSDAY
-                    "Friday" -> Calendar.FRIDAY
-                    "Saturday" -> Calendar.SATURDAY
-                    "Sunday" -> Calendar.SUNDAY
-                    else -> throw IllegalArgumentException("Invalid day")
+                    getString(R.string.monday) -> Calendar.MONDAY
+                    getString(R.string.tuesday) -> Calendar.TUESDAY
+                    getString(R.string.wednesday) -> Calendar.WEDNESDAY
+                    getString(R.string.thursday) -> Calendar.THURSDAY
+                    getString(R.string.friday) -> Calendar.FRIDAY
+                    getString(R.string.saturday) -> Calendar.SATURDAY
+                    getString(R.string.sunday) -> Calendar.SUNDAY
+                    else -> throw IllegalArgumentException(getString(R.string.invalid_day))
                 })
             }
 
@@ -205,9 +199,9 @@ class ReminderFragment : Fragment() {
 
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
-            setTitle("You still don't have any plants.")
+            setTitle(getString(R.string.you_still_don_t_have_any_plants))
             setMessage(message)
-            setPositiveButton("Continue") { _, _ ->
+            setPositiveButton(getString(R.string.tvcontinue)) { _, _ ->
                 findNavController().navigate(navigate)
             }
             create()

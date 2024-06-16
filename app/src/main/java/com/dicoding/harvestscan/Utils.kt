@@ -17,12 +17,14 @@ private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
 fun getImageUri(context: Context): Uri {
+    val FILENAME_FORMAT = context.getString(R.string.filename_format)
     var uri: Uri? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, "$timeStamp.jpg")
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/MyCamera/")
+            put(MediaStore.MediaColumns.DISPLAY_NAME,
+                context.getString(R.string.display_name, timeStamp))
+            put(MediaStore.MediaColumns.MIME_TYPE, context.getString(R.string.image_jpeg))
+            put(MediaStore.MediaColumns.RELATIVE_PATH, context.getString(R.string.pictures_mycamera))
         }
         uri = context.contentResolver.insert(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -34,7 +36,7 @@ fun getImageUri(context: Context): Uri {
 
 private fun getImageUriForPreQ(context: Context): Uri {
     val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    val imageFile = File(filesDir, "/MyCamera/$timeStamp.jpg")
+    val imageFile = File(filesDir, context.getString(R.string.image_file, timeStamp))
     if (imageFile.parentFile?.exists() == false) imageFile.parentFile?.mkdir()
     return FileProvider.getUriForFile(
         context,

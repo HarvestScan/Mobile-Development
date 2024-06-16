@@ -3,7 +3,6 @@ package com.dicoding.harvestscan.ui.auth.login
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -18,12 +18,14 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.remote.Result
 import com.dicoding.harvestscan.data.remote.response.User
 import com.dicoding.harvestscan.databinding.FragmentLoginBinding
+import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     private val viewModel: LoginViewModel by viewModels {
         ViewModelFactory.getInstance(requireActivity())
@@ -61,7 +63,6 @@ class LoginFragment : Fragment() {
                     }
                     is Result.Error -> {
                         showLoading(false)
-                        handleError(result.error)
                     }
                 }
             }
@@ -71,14 +72,6 @@ class LoginFragment : Fragment() {
     private fun loginProcess(data: User) {
         viewModel.saveSession(data)
         showToast(getString(R.string.login_success_message))
-    }
-    private fun handleError(error: String) {
-        if (error.contains("Firebase: Error (auth/email-already-in-use).")) {
-            showToast(getString(R.string.signup_failed_email_in_use))
-        } else {
-            showToast(error)
-            Log.d("RegisterUser", error)
-        }
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -102,10 +95,11 @@ class LoginFragment : Fragment() {
 
     private fun showSuccessDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
-            setTitle("Yeay!")
+            setTitle(getString(R.string.yeay))
             setMessage(message)
-            setPositiveButton("Continue") { _, _ ->
+            setPositiveButton(getString(R.string.tvcontinue)) { _, _ ->
                 findNavController().navigate(navigate)
+                mainViewModel.onHomeButtonClicked()
             }
             create()
         }.show()
@@ -117,6 +111,8 @@ class LoginFragment : Fragment() {
         val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
         val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
         val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
+        val forgotPassword = ObjectAnimator.ofFloat(binding.forgotPassword, View.ALPHA, 1f).setDuration(100)
+        val register = ObjectAnimator.ofFloat(binding.tvDontHaveAccount, View.ALPHA, 1f).setDuration(100)
         val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
         val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
 
@@ -126,6 +122,8 @@ class LoginFragment : Fragment() {
                 emailTextView,
                 emailEditTextLayout,
                 passwordTextView,
+                forgotPassword,
+                register,
                 passwordEditTextLayout,
                 login
             )

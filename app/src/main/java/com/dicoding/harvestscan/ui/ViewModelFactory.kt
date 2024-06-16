@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.UserRepository
 import com.dicoding.harvestscan.di.Injection
 import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
@@ -41,7 +42,7 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(ReminderViewModel::class.java) -> {
                 ReminderViewModel(application) as T
             }
-            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
+            else -> throw IllegalArgumentException(application.getString(R.string.unknown_viewmodel_class) + modelClass.name)
         }
     }
 

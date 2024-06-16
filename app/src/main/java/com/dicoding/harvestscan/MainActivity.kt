@@ -35,24 +35,19 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
 
-        // Memulai animasi gradasi di card view with id "about"
         startGradientAnimation()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         homeViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
-                // Navigate to LoginFragment if not logged in
                 if (navController.currentDestination?.id != R.id.navigation_login) {
                     navController.navigate(R.id.navigation_login)
                 }
-                // Hide BottomNavigationView and indicator
                 binding.navView.visibility = View.GONE
                 binding.navHostFragmentMain.visibility = View.GONE
                 return@observe
             }
-
-            // Setup navigation only if user is logged in
             setupNavigation(navController)
         }
 
@@ -74,8 +69,8 @@ class MainActivity : AppCompatActivity() {
         val aboutCardView: MaterialCardView = findViewById(R.id.about)
         aboutCardView.setBackgroundResource(R.drawable.gradient_animation)
         val animationDrawable = aboutCardView.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(1000)  // Durasi fade-in lebih cepat
-        animationDrawable.setExitFadeDuration(1000)   // Durasi fade-out lebih cepat
+        animationDrawable.setEnterFadeDuration(1000)
+        animationDrawable.setExitFadeDuration(1000)
         animationDrawable.start()
     }
 
@@ -85,7 +80,6 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
-        // Set initial position of the indicator
         navView.post {
             moveIndicator(indicator, navView, R.id.navigation_home)
         }
@@ -94,6 +88,13 @@ class MainActivity : AppCompatActivity() {
             moveIndicator(indicator, navView, item.itemId)
             navController.navigate(item.itemId)
             true
+        }
+
+        mainViewModel.navigateToHome.observe(this) { navigate ->
+            if (navigate) {
+                navView.selectedItemId = R.id.navigation_home
+                mainViewModel.onNavigatedToHome()
+            }
         }
 
         mainViewModel.navigateToScan.observe(this) { navigate ->
@@ -132,10 +133,8 @@ class MainActivity : AppCompatActivity() {
         val targetView = menuView.findViewById<View>(itemId)
 
         targetView?.let {
-            // Convert 5dp to pixels
             val extraMargin = resources.getDimensionPixelSize(R.dimen.extra_margin)
 
-            // Calculate the target X position with additional margin
             val targetX = it.x + it.width / 2 - indicator.width / 2 + extraMargin
             ObjectAnimator.ofFloat(indicator, "x", targetX).apply {
                 duration = 300
