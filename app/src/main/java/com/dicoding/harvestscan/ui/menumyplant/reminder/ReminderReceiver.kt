@@ -8,19 +8,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.graphics.Color
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.dicoding.harvestscan.MainActivity
 import com.dicoding.harvestscan.R
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d("ReminderReceiver", "Reminder received")
 
         val plantName = intent.getStringExtra(context.getString(R.string.plantname))
         val notes = intent.getStringExtra(context.getString(R.string.notes))
 
-        Log.d("ReminderReceiver", "Plant name: $plantName, Notes: $notes")
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

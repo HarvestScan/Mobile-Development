@@ -26,6 +26,12 @@ class ReminderViewModel (application: Application) : ViewModel() {
         return repository.getAllReminders()
     }
 
+    fun deleteReminderById(reminderId: Int) {
+        viewModelScope.launch {
+            repository.deleteReminderById(reminderId)
+        }
+    }
+
     fun getAllPlants(): LiveData<List<Plant>> {
         return repository.getAllPlants()
     }

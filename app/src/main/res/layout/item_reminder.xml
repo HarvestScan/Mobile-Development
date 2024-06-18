@@ -6,34 +6,38 @@
     android:background="@drawable/outline_bg"
     android:layout_height="94dp"
     android:layout_marginTop="8dp"
-    android:padding="7dp">
+    android:paddingVertical="7dp"
+    android:paddingHorizontal="16dp">
 
     <TextView
         android:id="@+id/tv_desc_reminder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         tools:text="Siram Mawarku"
         android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/tv_plant_name"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
+        android:ellipsize="end"
         tools:text="Mawar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_desc_reminder" />
     <TextView
         android:id="@+id/tv_days"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Senin, Rabu, Jumat"
         android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_plant_name" />
     <ImageButton

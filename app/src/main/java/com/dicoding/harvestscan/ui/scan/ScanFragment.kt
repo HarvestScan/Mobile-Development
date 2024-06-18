@@ -177,8 +177,8 @@ class ScanFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 val topResult = result[0]
                 val confidenceScore = "${(topResult.second * 100).toInt()}%"
                 val diseaseInfo = DiseaseData.diseaseDetails[topResult.first]
-                val description = diseaseInfo?.description ?: getString(R.string.no_description_available)
-                val tips = diseaseInfo?.tips ?: getString(R.string.no_tips_available)
+                val description = diseaseInfo?.description?.let { requireContext().getString(it) } ?: getString(R.string.no_description_available)
+                val tips = diseaseInfo?.tips?.let { requireContext().getString(it) } ?: getString(R.string.no_tips_available)
 
                 val savedImageUri = saveImageToInternalStorage(currentImageUri!!)
 

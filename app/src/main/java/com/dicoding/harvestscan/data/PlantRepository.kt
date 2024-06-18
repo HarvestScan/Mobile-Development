@@ -40,4 +40,10 @@ class PlantRepository(private val harvestScanDao: HarvestScanDao) {
         return harvestScanDao.getAllReminders()
     }
 
+    suspend fun deleteReminderById(reminderId: Int) {
+        withContext(Dispatchers.IO) {
+            harvestScanDao.deleteReminderById(reminderId)
+        }
+    }
+
 }

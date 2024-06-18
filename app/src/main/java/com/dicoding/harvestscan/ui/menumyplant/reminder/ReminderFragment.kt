@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -196,15 +195,12 @@ class ReminderFragment : Fragment() {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1)
             }
 
-            Log.d("ReminderFragment", "Setting alarm for $day at ${calendar.timeInMillis}")
-
             alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
                 AlarmManager.INTERVAL_DAY * 7,
                 pendingIntent
             )
-            Log.d("ReminderFragment", "Alarm set for $day")
         }
     }
 

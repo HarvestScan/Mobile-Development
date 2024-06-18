@@ -1,5 +1,9 @@
 package com.dicoding.harvestscan.ui.menumyplant.reminder
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +17,10 @@ import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.PlantRepository
 import com.dicoding.harvestscan.data.local.room.Reminder
 
-class ReminderListAdapter(private val plantRepository: PlantRepository) : ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(ReminderDiffCallback()) {
+class ReminderListAdapter(
+    private val plantRepository: PlantRepository,
+    private val reminderViewModel: ReminderViewModel
+) : ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(ReminderDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_reminder, parent, false)
@@ -40,7 +47,22 @@ class ReminderListAdapter(private val plantRepository: PlantRepository) : ListAd
             }
 
             btnDelete.setOnClickListener {
-                // Implementasi aksi hapus reminder jika diperlukan
+                reminderViewModel.deleteReminderById(reminder.id)
+                cancelAlarm(reminder)
+                notifyItemRemoved(adapterPosition)
+            }
+        }
+        private fun cancelAlarm(reminder: Reminder) {
+            val alarmManager = itemView.context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            reminder.daysOfWeek.split(", ").forEach { _ ->
+                val intent = Intent(itemView.context, ReminderReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    itemView.context,
+                    reminder.id,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+                alarmManager.cancel(pendingIntent)
             }
         }
     }

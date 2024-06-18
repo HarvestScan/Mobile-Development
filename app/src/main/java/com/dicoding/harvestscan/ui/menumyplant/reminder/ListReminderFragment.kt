@@ -32,7 +32,7 @@ class ListReminderFragment : Fragment() {
 
         val plantRepository = PlantRepository(PlantDatabase.getDatabase(requireContext()).HarvestScanDao())
 
-        val adapter = ReminderListAdapter(plantRepository)
+        val adapter = ReminderListAdapter(plantRepository, viewModel)
         binding.rvReminders.adapter = adapter
         binding.rvReminders.layoutManager = LinearLayoutManager(requireContext())
 

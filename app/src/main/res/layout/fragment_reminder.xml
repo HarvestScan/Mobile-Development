@@ -44,7 +44,8 @@
         <Spinner
             android:id="@+id/spinner_plant_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_height="55dp"
             android:spinnerMode="dropdown"
             android:background="@drawable/spinner_background" />
     </com.google.android.material.textfield.TextInputLayout>
