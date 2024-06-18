@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    tools:context=".ui.reminder.ReminderFragment">
+    tools:context=".ui.menumyplant.reminder.ReminderFragment">
 
     <TextView
         android:layout_width="wrap_content"

@@ -105,4 +105,6 @@
     <string name="description_of_analysis_title">Description of Analysis :</string>
     <string name="result_uppercase">RESULT</string>
     <string name="tips_title">Tips :</string>
+    <string name="tab_1">My Garden</string>
+    <string name="tab_2">Reminders</string>
 </resources>

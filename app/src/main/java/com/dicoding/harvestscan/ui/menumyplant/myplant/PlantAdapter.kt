@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.myplant
+package com.dicoding.harvestscan.ui.menumyplant.myplant
 
 import android.view.LayoutInflater
 import android.view.View

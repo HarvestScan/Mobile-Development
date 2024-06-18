@@ -10,8 +10,8 @@ import com.dicoding.harvestscan.di.Injection
 import com.dicoding.harvestscan.ui.auth.login.LoginViewModel
 import com.dicoding.harvestscan.ui.auth.register.RegisterViewModel
 import com.dicoding.harvestscan.ui.home.HomeViewModel
-import com.dicoding.harvestscan.ui.myplant.MyPlantViewModel
-import com.dicoding.harvestscan.ui.reminder.ReminderViewModel
+import com.dicoding.harvestscan.ui.menumyplant.myplant.MyPlantViewModel
+import com.dicoding.harvestscan.ui.menumyplant.reminder.ReminderViewModel
 import com.dicoding.harvestscan.ui.scan.ScanViewModel
 
 class ViewModelFactory(

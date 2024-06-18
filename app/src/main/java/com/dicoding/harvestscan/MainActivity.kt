@@ -112,18 +112,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mainViewModel.navigateToMyPlant.observe(this) { navigate ->
-            if (navigate) {
-                navView.selectedItemId = R.id.navigation_my_plant
-                mainViewModel.onNavigatedToMyPlant()
+        mainViewModel.navigateToPlantsMenu.observe(this) { tab ->
+            navView.selectedItemId = R.id.navigation_plants_menu
+            if (tab != -1) {
+                val bundle = Bundle().apply {
+                    putInt("selectedTab", tab)
+                }
+                findNavController(R.id.nav_host_fragment_activity_main)
+                    .navigate(R.id.navigation_plants_menu, bundle)
+                mainViewModel.onNavigatedToPlantsMenu()
             }
         }
 
         mainViewModel.navigateToAddReminder.observe(this) { navigate ->
             if (navigate) {
-                navView.selectedItemId = R.id.navigation_my_plant
-                navController.navigate(R.id.action_navigation_my_plant_to_navigation_reminder)
+                navView.selectedItemId = R.id.navigation_plants_menu
+                navController.navigate(R.id.action_navigation_plants_menu_to_navigation_reminder)
                 mainViewModel.onNavigatedToAddReminder()
+
             }
         }
     }

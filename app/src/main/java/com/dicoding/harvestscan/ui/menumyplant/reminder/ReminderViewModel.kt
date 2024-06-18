@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.reminder
+package com.dicoding.harvestscan.ui.menumyplant.reminder
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -21,6 +21,9 @@ class ReminderViewModel (application: Application) : ViewModel() {
         viewModelScope.launch {
             repository.insertReminder(reminder)
         }
+    }
+    fun getAllReminders(): LiveData<List<Reminder>> {
+        return repository.getAllReminders()
     }
 
     fun getAllPlants(): LiveData<List<Plant>> {

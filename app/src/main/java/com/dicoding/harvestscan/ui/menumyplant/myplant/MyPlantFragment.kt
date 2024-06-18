@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.myplant
+package com.dicoding.harvestscan.ui.menumyplant.myplant
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.databinding.FragmentMyplantBinding
+import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
+import com.dicoding.harvestscan.ui.menumyplant.PlantsMenuFragmentDirections
 
 class MyPlantFragment : Fragment() {
 
@@ -62,7 +64,7 @@ class MyPlantFragment : Fragment() {
     }
 
     private fun navigateToAddReminder(plant: Plant) {
-        val action = MyPlantFragmentDirections.actionNavigationMyPlantToNavigationReminder()
+        val action = PlantsMenuFragmentDirections.actionNavigationPlantsMenuToNavigationReminder()
         action.plantId = plant.id
         findNavController().navigate(action)
     }

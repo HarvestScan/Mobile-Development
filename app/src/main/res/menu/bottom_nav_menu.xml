@@ -18,7 +18,7 @@
         android:title="@string/title_scan" />
 
     <item
-        android:id="@+id/navigation_my_plant"
+        android:id="@+id/navigation_plants_menu"
         android:icon="@drawable/ic_my_plant"
         app:fontFamily="@font/poppins_regular"
         android:title="@string/title_my_plant" />

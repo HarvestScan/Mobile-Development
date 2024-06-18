@@ -106,4 +106,6 @@
     <string name="description_of_analysis_title">Deskripsi Analisis :</string>
     <string name="result_uppercase">HASIL</string>
     <string name="tips_title">Tips :</string>
+    <string name="tab_1">Kebunku</string>
+    <string name="tab_2">Pengingat</string>
 </resources>

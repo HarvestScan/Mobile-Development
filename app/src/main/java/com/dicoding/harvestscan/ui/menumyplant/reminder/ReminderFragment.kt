@@ -1,11 +1,13 @@
-package com.dicoding.harvestscan.ui.reminder
+package com.dicoding.harvestscan.ui.menumyplant.reminder
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -48,6 +51,7 @@ class ReminderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkPlantCountAndRedirect()
+        requestNotificationPermission()
 
         plantSpinner = binding.spinnerPlantName
 
@@ -131,6 +135,7 @@ class ReminderFragment : Fragment() {
             setAlarm(reminder) // Set the alarm after saving the reminder
             Toast.makeText(requireContext(),
                 getString(R.string.reminder_successfully_saved), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.navigation_plants_menu, bundleOf("selectedTab" to 1))
         }
     }
 
@@ -188,14 +193,24 @@ class ReminderFragment : Fragment() {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1)
             }
 
+            Log.d("ReminderFragment", "Setting alarm for $day at ${calendar.timeInMillis}")
+
             alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
                 AlarmManager.INTERVAL_DAY * 7,
                 pendingIntent
             )
+            Log.d("ReminderFragment", "Alarm set for $day")
         }
     }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+        }
+    }
+
 
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
