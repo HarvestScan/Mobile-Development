@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.harvestscan.R
 import com.dicoding.harvestscan.data.local.room.Plant
 import com.dicoding.harvestscan.databinding.FragmentMyplantBinding
-import com.dicoding.harvestscan.ui.MainViewModel
 import com.dicoding.harvestscan.ui.ViewModelFactory
 import com.dicoding.harvestscan.ui.menumyplant.PlantsMenuFragmentDirections
 

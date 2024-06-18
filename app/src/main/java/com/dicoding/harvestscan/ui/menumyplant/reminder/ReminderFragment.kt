@@ -53,6 +53,9 @@ class ReminderFragment : Fragment() {
         checkPlantCountAndRedirect()
         requestNotificationPermission()
 
+        val args = ReminderFragmentArgs.fromBundle(requireArguments())
+        plantId = args.plantId
+
         plantSpinner = binding.spinnerPlantName
 
         viewModel.getAllPlants().observe(viewLifecycleOwner) { plants ->
