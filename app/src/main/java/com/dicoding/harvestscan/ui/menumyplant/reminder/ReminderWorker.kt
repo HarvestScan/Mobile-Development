@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.reminder
+package com.dicoding.harvestscan.ui.menumyplant.reminder
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

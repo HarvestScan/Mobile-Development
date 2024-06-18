@@ -14,6 +14,10 @@ class PlantRepository(private val harvestScanDao: HarvestScanDao) {
         return harvestScanDao.getAllPlants().asLiveData(Dispatchers.IO)
     }
 
+    fun getPlantById(plantId: Int): LiveData<Plant> {
+        return harvestScanDao.getPlantById(plantId)
+    }
+
     suspend fun insertPlant(plant: Plant) {
         withContext(Dispatchers.IO) {
             harvestScanDao.insertPlant(plant)
@@ -31,4 +35,15 @@ class PlantRepository(private val harvestScanDao: HarvestScanDao) {
             harvestScanDao.insertReminder(reminder)
         }
     }
+
+    fun getAllReminders(): LiveData<List<Reminder>> {
+        return harvestScanDao.getAllReminders()
+    }
+
+    suspend fun deleteReminderById(reminderId: Int) {
+        withContext(Dispatchers.IO) {
+            harvestScanDao.deleteReminderById(reminderId)
+        }
+    }
+
 }

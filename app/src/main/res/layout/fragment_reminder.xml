@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    tools:context=".ui.reminder.ReminderFragment">
+    tools:context=".ui.menumyplant.reminder.ReminderFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +44,8 @@
         <Spinner
             android:id="@+id/spinner_plant_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_height="55dp"
             android:spinnerMode="dropdown"
             android:background="@drawable/spinner_background" />
     </com.google.android.material.textfield.TextInputLayout>

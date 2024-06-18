@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.scan.ResultFragment">
 
@@ -35,7 +36,6 @@
         android:id="@+id/result_tips_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semi_bold"
@@ -78,8 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/result_tips_title"
         tools:text="@string/tips"
         android:maxLines="3"
-        android:ellipsize="end"
-        android:layout_marginHorizontal="16dp" />
+        android:ellipsize="end" />
 
 
     <TextView
@@ -95,15 +94,13 @@
         app:layout_constraintTop_toBottomOf="@+id/result_desc_title"
         tools:text="@string/analysis_results_description"
         android:maxLines="3"
-        android:ellipsize="end"
-        android:layout_marginHorizontal="16dp" />
+        android:ellipsize="end" />
 
 
     <TextView
         android:id="@+id/result_desc_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semi_bold"

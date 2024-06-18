@@ -20,7 +20,10 @@ interface HarvestScanDao {
     suspend fun insertReminder(reminder: Reminder)
 
     @Query("SELECT * FROM reminders")
-    fun getAllReminders(): Flow<List<Reminder>>
+    fun getAllReminders(): LiveData<List<Reminder>>
+
+    @Query("DELETE FROM reminders WHERE id = :reminderId")
+    suspend fun deleteReminderById(reminderId: Int)
 
     @Query("SELECT * FROM plants WHERE id = :plantId")
     fun getPlantById(plantId: Int): LiveData<Plant>

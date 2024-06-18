@@ -51,13 +51,13 @@
             android:id="@+id/action_navigation_home_to_navigation_login"
             app:destination="@id/navigation_login" />
         <action
-            android:id="@+id/action_navigation_home_to_reminderFragment"
+            android:id="@+id/action_navigation_home_to_navigation_reminder"
             app:destination="@id/navigation_reminder"/>
     </fragment>
 
     <fragment
         android:id="@+id/navigation_reminder"
-        android:name="com.dicoding.harvestscan.ui.reminder.ReminderFragment"
+        android:name="com.dicoding.harvestscan.ui.menumyplant.reminder.ReminderFragment"
         android:label="Reminder Fragment"
         tools:layout="@layout/fragment_reminder">
         <argument
@@ -121,7 +121,7 @@
 
     <fragment
         android:id="@+id/navigation_my_plant"
-        android:name="com.dicoding.harvestscan.ui.myplant.MyPlantFragment"
+        android:name="com.dicoding.harvestscan.ui.menumyplant.myplant.MyPlantFragment"
         android:label="@string/title_my_plant"
         tools:layout="@layout/fragment_myplant">
         <action
@@ -134,7 +134,30 @@
 
     <fragment
         android:id="@+id/navigation_add_plant"
-        android:name="com.dicoding.harvestscan.ui.myplant.AddPlantFragment"
+        android:name="com.dicoding.harvestscan.ui.menumyplant.myplant.AddPlantFragment"
         android:label="@string/add_plant"
         tools:layout="@layout/fragment_add_plant" />
+
+    <fragment
+        android:id="@+id/navigation_list_reminder"
+        android:name="com.dicoding.harvestscan.ui.menumyplant.reminder.ListReminderFragment"
+        android:label="@string/reminder"
+        tools:layout="@layout/fragment_list_reminder">
+        <action
+            android:id="@+id/action_navigation_list_reminder_to_navigation_reminder"
+            app:destination="@id/navigation_reminder" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_plants_menu"
+        android:name="com.dicoding.harvestscan.ui.menumyplant.PlantsMenuFragment"
+        android:label="@string/title_my_plant"
+        tools:layout="@layout/fragment_plants_menu">
+        <argument
+            android:name="selectedTab"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_navigation_plants_menu_to_navigation_reminder"
+            app:destination="@id/navigation_reminder"/>
+    </fragment>
 </navigation>

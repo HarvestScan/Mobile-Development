@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.myplant
+package com.dicoding.harvestscan.ui.menumyplant.myplant
 
 import android.app.Application
 import androidx.lifecycle.*

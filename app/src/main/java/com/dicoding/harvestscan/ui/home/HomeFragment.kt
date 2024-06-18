@@ -73,10 +73,10 @@ class HomeFragment : Fragment() {
             mainViewModel.onMyPlantButtonClicked()
         }
         binding.cardAddReminder.setOnClickListener {
-            mainViewModel.onAddReminderButtonClicked()
+            mainViewModel.onReminderButtonClicked()
         }
 
-        startGradientAnimation()  // Start the gradient animation on view created
+        startGradientAnimation()
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {

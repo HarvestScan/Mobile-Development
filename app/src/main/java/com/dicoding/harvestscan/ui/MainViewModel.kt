@@ -11,11 +11,11 @@ class MainViewModel: ViewModel() {
     private val _navigateToScan = MutableLiveData<Boolean>()
     val navigateToScan: LiveData<Boolean> get() = _navigateToScan
 
-    private val _navigateToMyPlant = MutableLiveData<Boolean>()
-    val navigateToMyPlant: LiveData<Boolean> get() = _navigateToMyPlant
-
     private val _navigateToHistory = MutableLiveData<Boolean>()
     val navigateToHistory: LiveData<Boolean> get() = _navigateToHistory
+
+    private val _navigateToPlantsMenu = MutableLiveData<Int>()
+    val navigateToPlantsMenu: LiveData<Int> get() = _navigateToPlantsMenu
 
     private val _navigateToAddReminder = MutableLiveData<Boolean>()
     val navigateToAddReminder: LiveData<Boolean> get() = _navigateToAddReminder
@@ -35,13 +35,7 @@ class MainViewModel: ViewModel() {
     fun onNavigatedToScan() {
         _navigateToScan.value = false
     }
-    fun onMyPlantButtonClicked() {
-        _navigateToMyPlant.value = true
-    }
 
-    fun onNavigatedToMyPlant() {
-        _navigateToMyPlant.value = false
-    }
     fun onHistoryButtonClicked() {
         _navigateToHistory.value = true
     }
@@ -50,10 +44,17 @@ class MainViewModel: ViewModel() {
         _navigateToHistory.value = false
     }
 
-    fun onAddReminderButtonClicked() {
-        _navigateToAddReminder.value = true
+    fun onMyPlantButtonClicked() {
+        _navigateToPlantsMenu.value = 0
     }
 
+    fun onNavigatedToPlantsMenu() {
+        _navigateToPlantsMenu.value = -1
+    }
+
+    fun onReminderButtonClicked() {
+        _navigateToAddReminder.value = true
+    }
     fun onNavigatedToAddReminder() {
         _navigateToAddReminder.value = false
     }

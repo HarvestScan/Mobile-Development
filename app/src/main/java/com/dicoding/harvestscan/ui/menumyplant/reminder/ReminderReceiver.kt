@@ -1,4 +1,4 @@
-package com.dicoding.harvestscan.ui.reminder
+package com.dicoding.harvestscan.ui.menumyplant.reminder
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,8 +14,10 @@ import com.dicoding.harvestscan.R
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+
         val plantName = intent.getStringExtra(context.getString(R.string.plantname))
         val notes = intent.getStringExtra(context.getString(R.string.notes))
+
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -45,7 +47,7 @@ class ReminderReceiver : BroadcastReceiver() {
         )
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.apk_logo)  // Update the icon to the correct resource
+            .setSmallIcon(R.drawable.apk_logo)
             .setContentTitle(context.getString(R.string.reminder_for_plant))
             .setContentText(
                 context.getString(
@@ -61,3 +63,4 @@ class ReminderReceiver : BroadcastReceiver() {
         notificationManager.notify(notificationId, notification)
     }
 }
+
