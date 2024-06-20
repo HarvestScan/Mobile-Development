@@ -12,7 +12,7 @@ data class Plant(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val type: String,
-    val botanicalName: String,
+    val botanicalName: String?,
     val imageUri: String
 )
 

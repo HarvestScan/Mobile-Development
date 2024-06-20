@@ -83,15 +83,30 @@ class AddPlantFragment : Fragment() {
     }
 
     private fun savePlant() {
-        val name = binding.descNamePlant.text.toString()
-        val type = binding.edAddDescription.text.toString()
-        val botanicalName = binding.descBotanicalPlant.text.toString()
-        val image = imageUri.toString()
+        val name = binding.descNamePlant.text.toString().trim()
+        val type = binding.edAddDescription.text.toString().trim()
+        val botanicalName = binding.descBotanicalPlant.text.toString().trim()
+        val image = imageUri?.toString()?.trim() ?: ""
 
-        if (name.isNotEmpty() && type.isNotEmpty() && botanicalName.isNotEmpty() && image.isNotEmpty()) {
+        // Reset errors
+        binding.layoutInputName.error = null
+        binding.layoutInputMessage.error = null
+        binding.imageAddPlant.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.transparent))
+
+        if (name.isEmpty()) {
+            binding.layoutInputName.error = getString(R.string.required_field)
+        }
+        if (type.isEmpty()) {
+            binding.layoutInputMessage.error = getString(R.string.required_field)
+        }
+        if (image.isEmpty()) {
+            showCustomToast(getString(R.string.required_image))
+            binding.imageAddPlant.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+        }
+
+        if (name.isNotEmpty() && type.isNotEmpty() && image.isNotEmpty()) {
             val plant = Plant(name = name, type = type, botanicalName = botanicalName, imageUri = image)
             plantViewModel.insert(plant)
-
             showCustomToast(getString(R.string.plant_has_been_added))
             findNavController().navigate(R.id.navigation_my_plant)
         } else {
@@ -102,10 +117,8 @@ class AddPlantFragment : Fragment() {
     private fun showCustomToast(message: String) {
         val toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
         val view = toast.view
-
         val text = view?.findViewById<TextView>(android.R.id.message)
         text?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-
         toast.show()
     }
 

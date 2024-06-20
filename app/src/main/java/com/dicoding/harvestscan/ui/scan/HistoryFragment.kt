@@ -23,6 +23,8 @@ class HistoryFragment : Fragment() {
         ViewModelFactory.getInstance(requireActivity())
     }
 
+    private lateinit var adapter: HistoryAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +36,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = HistoryAdapter(emptyList(), this::onHistoryItemClicked, this::onDeleteHistoryClicked)
+        adapter = HistoryAdapter(emptyList(), this::onHistoryItemClicked, this::onDeleteHistoryClicked)
 
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvHeroes.layoutManager = layoutManager
@@ -43,8 +45,18 @@ class HistoryFragment : Fragment() {
         binding.rvHeroes.adapter = adapter
 
         viewModel.historyList.observe(viewLifecycleOwner) { historyList ->
-            adapter.historyList = historyList
-            adapter.notifyDataSetChanged()
+            adapter.updateHistoryList(historyList)
+            toggleEmptyState(historyList.isEmpty())
+        }
+    }
+
+    private fun toggleEmptyState(isEmpty: Boolean) {
+        if (isEmpty) {
+            binding.tvNoHistory.visibility = View.VISIBLE
+            binding.rvHeroes.visibility = View.GONE
+        } else {
+            binding.tvNoHistory.visibility = View.GONE
+            binding.rvHeroes.visibility = View.VISIBLE
         }
     }
 
