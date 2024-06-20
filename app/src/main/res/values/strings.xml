@@ -183,4 +183,6 @@
     <string name="tips_37">Use insecticides and remove infected leaves.</string>
     <string name="desc_38">Healthy tomato plant with no signs of disease.</string>
     <string name="tips_38">Ensure proper care and maintenance for healthy growth.</string>
+    <string name="notification_permission_granted">Notification permission granted</string>
+    <string name="notification_permission_denied">Notification permission denied</string>
 </resources>

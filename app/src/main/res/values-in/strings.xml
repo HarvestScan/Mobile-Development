@@ -184,4 +184,6 @@
     <string name="tips_37">Gunakan insektisida dan hapus daun yang terinfeksi.</string>
     <string name="desc_38">Tanaman tomat yang sehat tanpa tanda-tanda penyakit.</string>
     <string name="tips_38">Pastikan perawatan dan pemeliharaan yang tepat untuk pertumbuhan yang sehat.</string>
+    <string name="notification_permission_granted">Izin notifikasi diberikan</string>
+    <string name="notification_permission_denied">Izin notifikasi ditolak</string>
 </resources>
