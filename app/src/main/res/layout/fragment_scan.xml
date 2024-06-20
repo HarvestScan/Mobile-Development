@@ -1,109 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.scan.ScanFragment">
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="460dp"
-        android:background="@drawable/half_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progressIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="460dp"
+            android:background="@drawable/half_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_insert_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/insert_image"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressIndicator" />
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_scan_image"
-        android:layout_width="341dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/image_border"
-        android:contentDescription="@string/desc_image_plant"
-        android:padding="20dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_insert_image"
-        tools:src="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/tv_insert_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/insert_image"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressIndicator" />
 
-    <Button
-        android:id="@+id/btn_camera"
-        style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="112dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="@color/teal_500"
-        android:gravity="center"
-        android:text="@string/camera"
-        android:textSize="16sp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
+        <ImageView
+            android:id="@+id/iv_scan_image"
+            android:layout_width="341dp"
+            android:layout_height="275dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/image_border"
+            android:contentDescription="@string/desc_image_plant"
+            android:padding="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_insert_image"
+            tools:src="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btn_gallery"
-        style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="112dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="@color/teal_500"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="@string/gallery"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_camera"
-        app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
+        <Button
+            android:id="@+id/btn_camera"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="112dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="96dp"
+            android:backgroundTint="@color/teal_500"
+            android:gravity="center"
+            android:text="@string/camera"
+            android:textSize="16sp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
 
-    <Button
-        android:id="@+id/btn_analyze"
-        style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="5dp"
-        app:icon="@drawable/baseline_search_24"
-        android:backgroundTint="@color/teal_500"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="@string/analyze"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_gallery" />
+        <Button
+            android:id="@+id/btn_gallery"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="112dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="96dp"
+            android:backgroundTint="@color/teal_500"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/gallery"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_camera"
+            app:layout_constraintTop_toBottomOf="@+id/iv_scan_image" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_analyze"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="140dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp"
+            app:icon="@drawable/baseline_search_24"
+            android:backgroundTint="@color/teal_500"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/analyze"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_gallery" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
