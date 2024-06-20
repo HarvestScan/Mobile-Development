@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -39,6 +41,16 @@ class ReminderFragment : Fragment() {
     private lateinit var plantList: List<Plant>
     private lateinit var plantSpinner: Spinner
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Toast.makeText(requireContext(), getString(R.string.notification_permission_granted), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.notification_permission_denied), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +62,8 @@ class ReminderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkPlantCountAndRedirect()
-        requestNotificationPermission()
+        // requestNotificationPermission()
+        checkNotificationPermission()
 
         val args = ReminderFragmentArgs.fromBundle(requireArguments())
         plantId = args.plantId
@@ -92,6 +105,9 @@ class ReminderFragment : Fragment() {
     }
 
     private fun showTimePickerDialog(editText: EditText) {
+        if (!isAdded) {
+            return
+        }
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
@@ -170,7 +186,8 @@ class ReminderFragment : Fragment() {
                 context,
                 day.hashCode(),
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+                //PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
             val calendar = Calendar.getInstance().apply {
@@ -204,13 +221,13 @@ class ReminderFragment : Fragment() {
         }
     }
 
-    private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
     }
-
-
     private fun showAlertDialog(message: String, navigate: Int) {
         val dialog = AlertDialog.Builder(requireActivity()).apply {
             setTitle(getString(R.string.you_still_don_t_have_any_plants))

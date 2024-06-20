@@ -76,7 +76,7 @@
 
     <Button
         android:id="@+id/save_add_plant"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="54dp"
         android:layout_marginTop="7dp"
         android:text="@string/save_add_plant"
