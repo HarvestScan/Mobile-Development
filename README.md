@@ -6,6 +6,7 @@ This repository contains the code and documentation for a mobile application des
 # Application install
 
 **You can Install and test latest Harvest Scan app from below 👇**
+
 [HarvestScanApk](https://github.com/HarvestScan/Mobile-Development/releases/tag/v1.0.0)
 
 # Setup
