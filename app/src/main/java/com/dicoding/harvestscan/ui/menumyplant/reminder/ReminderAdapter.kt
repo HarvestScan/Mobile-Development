@@ -23,6 +23,16 @@ class ReminderListAdapter(
     private val reminderViewModel: ReminderViewModel
 ) : ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(ReminderDiffCallback()) {
 
+    private var plantList: List<Plant> = emptyList()
+
+    init {
+        // Load plantList at the initialization of the adapter
+        plantRepository.getAllPlants().observeForever { plants ->
+            plantList = plants
+            notifyDataSetChanged()
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_reminder, parent, false)
         return ReminderViewHolder(view)
@@ -30,7 +40,7 @@ class ReminderListAdapter(
 
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
         val reminder = getItem(position)
-        holder.bind(reminder, holder.itemView.context)
+        holder.bind(reminder)
     }
 
     inner class ReminderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,9 +48,8 @@ class ReminderListAdapter(
         private val tvPlantName: TextView = itemView.findViewById(R.id.tv_plant_name)
         private val tvDays: TextView = itemView.findViewById(R.id.tv_days)
         private val btnDelete: ImageButton = itemView.findViewById(R.id.btn_delete)
-        private lateinit var plantList: List<Plant>
 
-        fun bind(reminder: Reminder, context: Context) {
+        fun bind(reminder: Reminder) {
             tvDesc.text = reminder.notes
             tvDays.text = reminder.daysOfWeek
 
@@ -50,36 +59,32 @@ class ReminderListAdapter(
 
             btnDelete.setOnClickListener {
                 reminderViewModel.deleteReminderById(reminder.id)
-                cancelAlarm(context, reminder)
+                cancelAlarm(itemView.context, reminder)
                 notifyItemRemoved(adapterPosition)
             }
         }
-        private fun cancelAlarm(context:Context, reminder: Reminder) {
+
+        private fun cancelAlarm(context: Context, reminder: Reminder) {
             val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val selectedPlant = plantList.find { it.id == reminder.plantId }
             val plantName = selectedPlant?.name
 
-            // Split daysOfWeek to get individual days
             reminder.daysOfWeek.split(", ").forEach { day ->
-                // Create intent for the ReminderReceiver
                 val intent = Intent(context, ReminderReceiver::class.java).apply {
                     putExtra(context.getString(R.string.plantname), plantName)
                     putExtra(context.getString(R.string.notes), reminder.notes)
                 }
 
-                // Create PendingIntent with the same requestCode as when setting the alarm
                 val pendingIntent = PendingIntent.getBroadcast(
                     context,
-                    day.hashCode(), // Ensure requestCode is unique for each day
+                    day.hashCode(),
                     intent,
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
 
-                // Cancel the alarm using AlarmManager
                 alarmManager.cancel(pendingIntent)
             }
         }
-
     }
 
     class ReminderDiffCallback : DiffUtil.ItemCallback<Reminder>() {

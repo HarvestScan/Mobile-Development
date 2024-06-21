@@ -75,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_type_plant"
+                android:textCursorDrawable="@drawable/custom_cursor"
                 android:textColorHint="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_botanical_plant"
+                android:textCursorDrawable="@drawable/custom_cursor"
                 android:inputType="text"
                 android:textColorHint="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
